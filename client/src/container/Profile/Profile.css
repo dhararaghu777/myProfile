@@ -1,0 +1,18 @@
+.Profile {
+    display: flex;
+    /* height: calc(100vh); */
+    flex-direction: column;
+    padding: 1.2rem 1.7rem;
+
+    border: 2px solid rgb(0, 247, 255);
+}
+
+.profile_section {
+    
+    display: flex;
+    flex-direction: row;
+    min-height: 15rem;
+    max-height: 20rem;
+    border: 1px solid red;
+    padding: 0.5rem;
+}

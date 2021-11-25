@@ -1,0 +1,44 @@
+.ProfileInfo {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid blue;
+   
+}
+
+.profile_pic {
+    display: flex;
+    flex: 0 0 65%;
+    width: 100%;
+    padding: 0.4rem;
+    justify-content: center;
+    align-items: center;
+    /* border: 3px solid salmon; */
+   
+}
+
+.image_div {
+    width: 150px;
+    height: 150px;
+    /* border: 2px solid hotpink; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile_pic .image_div .css-1ktahpm-MuiAvatar-root {
+    border-radius: 1rem;
+    width: 100%;
+    height: 100%;
+}
+
+.profile_buttons {
+    flex: 0 0 40%;
+    display: flex;
+    flex-direction: column;
+    padding: 0.3rem 0;
+}
+
+.profile_buttons form {
+    padding: 0.4rem 0;
+}
+

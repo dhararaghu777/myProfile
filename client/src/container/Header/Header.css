@@ -1,0 +1,30 @@
+.Header {
+    height: 3.75rem;
+    background-color: #1D3557;
+    color : #fff;
+    font-size: 1.25rem ;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+}
+
+.Header_logo {
+    flex: 1;
+    font-size: 1.5rem;
+    font-weight: 550;
+    cursor: pointer;
+}
+
+.Header_logo a, .nav_item a {
+    text-decoration: none;
+    color : #fff;
+}
+
+.Header_nav {
+    display: flex;
+    justify-content: right;
+}
+
+.Header_nav .nav_item {
+    cursor: pointer;
+}

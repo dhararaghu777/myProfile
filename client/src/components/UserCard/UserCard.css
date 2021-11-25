@@ -1,0 +1,45 @@
+.Card {
+    width: 15rem;
+    height: 18rem;
+    display: flex;
+    flex-direction: column;
+    padding: 0.7rem;
+}
+
+.profile {
+    flex: 0 0 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile_pic{
+    width: 70px;
+    height: 70px;
+    font-size: 2.5rem;
+}
+
+.profile_name{
+    flex: 0 0 20%;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile_name h5{
+   
+}
+
+.profile_email{
+    flex: 0 0 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0,0,0,0.7);
+}
+
+.profile_button {
+    flex: 1 0 20%;
+    font-size: 0.75rem !important;
+}
