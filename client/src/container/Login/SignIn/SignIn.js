@@ -12,13 +12,12 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {NavLink} from 'react-router-dom';
 import axios from '../../../axios';
 import {useSelector, useDispatch} from 'react-redux';
 import {setToken} from '../../../store/userInfoSlice';
 import './SignIn.css';
-import {useHistory, useLocation} from 'react-router-dom';
-
+import { NavLink,useLocation, useNavigate} from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 function Copyright(props) {
   return (
@@ -40,7 +39,8 @@ const theme = createTheme();
 
 export default function SignIn() {
 
-  const history = useHistory();
+  const location = useLocation();
+  const navigate = useNavigate();
   const user = useSelector(state => state.userInfo.user);
   // const location = useLocation();
 
@@ -48,7 +48,10 @@ export default function SignIn() {
 
   const dispatch = useDispatch();
 
+
+  // login function
   const handleSubmit = (event) => {
+
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
@@ -63,7 +66,8 @@ export default function SignIn() {
     .then((res) => {
         seterror("");
         dispatch(setToken(res.data.token));
-        history.replace(`/${user.username}`);
+        Cookies.set('token', res.data.token, {expires: 1});
+        navigate(`/`);
        
     })
     .catch((err)=>{

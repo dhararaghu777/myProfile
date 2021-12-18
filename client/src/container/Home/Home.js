@@ -6,6 +6,9 @@ import TextField from '@mui/material/TextField';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import UserCard from '../../components/UserCard/UserCard';
 import axios from '../../axios';
+import { Button } from '@mui/material';
+import {ThemeProvider} from '@mui/material';
+import theme from '../../components/Theme/Theme';
 
 
 function Home() {
@@ -14,6 +17,7 @@ function Home() {
     const [user, setuser] = useState(null);
     const [error, seterror] = useState(false);
     const [err_msg, seterr_msg] = useState("")
+
 
     const findAccount = ()=>{
 
@@ -38,6 +42,7 @@ function Home() {
     }
 
     return (
+        <ThemeProvider theme= {theme}>
         <div className="Home">
             <div className="Home_box">
                 <div className="search_container_parent">
@@ -71,6 +76,7 @@ function Home() {
                 </div>
             </div>
         </div>
+    </ThemeProvider>
     )
 }
 

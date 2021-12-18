@@ -1,37 +1,43 @@
 import React, {useState, useEffect} from 'react';
 import ProfileInfo from '../../components/ProfileInfo/ProfileInfo';
-import './Profile.css';
 import ProfileDetails from '../../components/ProfileDetails/ProfileDetails';
 import {useDispatch, useSelector} from 'react-redux';
 import {setProfile} from '../../store/userProfileSlice';
+import { Grid } from '@mui/material';
+import {makeStyles} from '@mui/styles';
+import Spinner from '../../components/Spinner/Spinner';
 
+let useStyles = makeStyles((theme)=> ({
+    profile: {
+        padding: '2rem 3rem',
+        position: 'relative',
+        
+        [theme.breakpoints.down('sm')]: {
+            padding: '1.5rem'
+        }
+    },
+
+}))
 
 function Profile() {
 
+    const classes = useStyles();
     const token = useSelector(state => state.userInfo.token);
+    const [loading, setloading] = useState(false);
 
-    useEffect(()=>{
-
-        
-    })
+    useEffect(() => {
+        setloading(true);
+        setTimeout(()=>{
+            setloading(prev=>false);
+        },1500)
+    }, [])
 
     return (
-        <div className = "Profile">
-            <div className="profile_section">
-                <ProfileInfo />
-                <ProfileDetails />
-            </div>
-            <div className="skill_section">
-
-            </div>
-            <div className="exprerience_section">
-
-            </div>
-            <div className="projects_section">
-
-            </div>
-
-        </div>
+        <Grid container className={classes.profile}  >
+            <ProfileInfo />
+            {/* <ProfileDetails /> */}
+           {loading && <Spinner /> }
+        </Grid>
     )
 }
 

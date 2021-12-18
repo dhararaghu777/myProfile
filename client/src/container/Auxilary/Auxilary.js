@@ -1,9 +1,9 @@
 import React from 'react';
-import "./Auxilary.css";
+
 
 function Auxilary(props) {
     return (
-        <div className="Auxilary">
+        <div>
             {props.children}
         </div>
     )

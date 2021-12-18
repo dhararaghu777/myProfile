@@ -1,5 +1,27 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "../axios";
 
+
+export const fetchUser = createAsyncThunk(
+    'fetchUpdatedUser',
+    async (token, thunkAPI) => {
+        const config = {
+            headers: {
+              "x-auth-token": token
+            }
+        }
+
+        const res = await axios.get('/login', config);
+        console.log({
+            token: token,
+            user: res.data
+        })
+        return res.data;
+    }
+)
+
+
+//intial state
 let initialState = {
     user: null,
     token: "",
@@ -22,9 +44,20 @@ const userSlice= createSlice({
         },
         setError : (state, action) => {
             state.error = action.payload;
+        },
+        userLogout: (state, action) => {
+            state.token="";
+            state.user= null;
+        }
+    },
+    extraReducers: {
+        [fetchUser.fulfilled]: (state,action)=>{
+            state.user= action.payload;
         }
     }
 });
 
-export const {setUser, setToken, setError} = userSlice.actions;
+
+export const {setUser, setToken, setError, userLogout} = userSlice.actions;
+
 export default userSlice.reducer;

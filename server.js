@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 app.use('/api/signin', require('./routes/api/signIn'));
 app.use('/api/login', require('./routes/api/login'));
 app.use('/api/users', require('./routes/api/users'));
-app.use('/api/pics', require('./routes/api/pics'));
+app.use('/api/profilePic', require('./routes/api/profilePic'));
 app.use('/api/profile', require('./routes/api/profile'));
 
 // launching server

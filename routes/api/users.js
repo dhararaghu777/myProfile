@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {check, validationResult} = require('express-validator');
 const User = require('../../models/User');
-
+const auth = require('../../middleware/auth');
 
 //------------------------ POST --------------------------------------------
 
@@ -35,10 +35,49 @@ async (req, res)=>{
         res.status(200).json(user);
     } catch (err) {
         console.log(err);
-        return res.status(400).json({errors: ['Server error']});
+        return res.status(500).json({errors: ['Server error']});
     }
 
     
 })
+
+
+// method: POST
+// usage: update User's Name
+router.post("/:category",[auth], async (req, res)=> {
+
+   try {
+        let user = await User.findById(req.user.id);
+
+        if(!user)
+        {
+            return res.status(400).json({errors: ['No User found']});
+        }
+
+        const {category} = req.params;
+        console.log("category", category);
+        switch(category)
+        {
+            case "name":
+                user.name= req.body.name;
+                break;
+            case 'remove': 
+                user.image="";
+                break;
+            default: 
+                break;
+        }
+
+    await user.save();
+    
+    res.status(200).json({msg: "Profile Updated Succesfully"});
+
+   } catch (err) {
+    return res.status(500).json({errors: ['Server Error']});
+   }
+
+
+})
+
 
 module.exports= router;
