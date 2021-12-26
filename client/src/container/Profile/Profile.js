@@ -18,6 +18,8 @@ import Skills from '../../components/ProfileDetails/Skills';
 import Achievements from '../../components/ProfileDetails/Achievements';
 import Social from '../../components/ProfileDetails/Social';
 import Mobile from '../../components/ProfileDetails/Mobile';
+import ImagesSection from '../../components/ProfileDetails/ImagesSection';
+import VideosSection from '../../components/ProfileDetails/VideosSection';
 
 let useStyles = makeStyles((theme)=> ({
     profile: {
@@ -81,6 +83,16 @@ const componentsList =[
         name: 'Contact Details',
         component: ()=>(<Mobile/>),
         id: 7
+    },
+    {
+        name: 'Additional Images',
+        component: ()=>(<ImagesSection/>),
+        id: 8
+    },
+    {
+        name: 'Additional Videos',
+        component: ()=>(<VideosSection/>),
+        id: 9
     },
 ]
 

@@ -201,11 +201,13 @@ router.delete("/:category/:id",[auth], async (req, res) => {
                 break;
             
             case "extraImage": 
-                
+                index= profile.extra.personalImages.findIndex(item=> item._id==id);
+                profile.extra.personalImages.splice(index,1);
                 break;
 
             case "extraVideo":
-                
+                index= profile.extra.personalVideos.findIndex(item=> item._id==id);
+                profile.extra.personalVideos.splice(index,1);
                 break;
             
 

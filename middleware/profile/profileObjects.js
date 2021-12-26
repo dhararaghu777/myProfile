@@ -84,19 +84,24 @@ const achievement = (req, res) => {
 
 
 const extraImages = (req, res) => {
-    const {image} = req.body;
+    const {name, description, image} = req.body;
 
-    return image;
+    return {
+        name,
+        description,
+        image
+    };
 }
 
 
 const extraVideo = (req, res) => {
 
-    const {video, description} = req.body;
+    const {name, video, description} = req.body;
 
     const details = {
-        video: video,
-        description: description
+        name,
+        description,
+        video
     }
 
     return details;

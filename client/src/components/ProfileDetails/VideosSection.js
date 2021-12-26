@@ -1,0 +1,265 @@
+import { Button, Card, CardActionArea, CardActions, CardContent, Checkbox, FormControl, FormControlLabel, Grid, Link, TextField, Typography } from '@mui/material';
+import React, {useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import Spinner from '../Spinner/Spinner';
+import {makeStyles} from '@mui/styles';
+import axios from '../../axios';
+import {updateVideo, removeVideo} from '../../store/userProfileSlice';
+
+
+let useStyles = makeStyles((theme)=> ({
+    Videos: {
+        padding: '0.8rem 1rem',
+        backgroundColor:'#fff',
+        marginTop:'1rem',
+        flexDirection:'column',
+        // borderRadius: '0.3rem',
+        // boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
+        position: 'relative',
+
+
+    },
+
+    Card: {
+        padding: '0.5rem',
+        margin: '0.5rem',
+        '& span': {
+
+        },
+        '& div div': {
+            fontSize:'1rem',
+        },
+        '&  div button': {
+            
+        }
+    },
+    Input: {
+        flex:1
+    },
+    Info: {
+        fontSize:'0.9rem',
+        color: '#E63946'
+    },
+    SubInfo:{
+        fontSize:'0.8rem',
+        color: '#E63946',
+       
+    }
+}))
+
+function Videos() {
+
+    const classes = useStyles();
+
+    const [load, setload] = useState(false);
+    const token = useSelector((state)=>state.userInfo.token);
+    const videosList = useSelector(state=> state.profileInfo.profile.extra.personalVideos);
+    const dispatch = useDispatch();
+    const [addVideo, setaddVideo] = useState(false);
+    const [name, setname] = useState("");
+    const [description, setdescription] = useState("");
+    const [video, setvideo] = useState("");
+
+    
+    const closeInputList=(e)=>{
+        setaddVideo(false);
+        setname("");
+        setdescription('');
+        setvideo('')
+    }
+
+    const onSubmitHandler = async (e)=> {
+        
+        setload(true);
+        const data = {
+            name:name,
+            description:description,
+            video: video
+        }
+
+        const config = {
+            headers: {
+                'x-auth-token': token,
+            }
+        }
+
+        try {
+
+            const res = await axios.post('/profile/extraVideo', data, config);
+            dispatch(updateVideo(data));
+            setload(false);
+            setaddVideo(false);
+        } catch (err) {
+            console.log(err);
+            setload(false);
+            setaddVideo(false);
+        }
+    }
+
+    const deleteVideo= async (id)=>{
+        const vdId= id;
+        setload(true);
+        const config = {
+            headers: {
+                'x-auth-token': token,
+            }
+        }
+
+        try {
+
+            const res = await axios.delete(`profile/extraVideo/${vdId}`,config);
+            dispatch(removeVideo(vdId));
+            setload(false);
+        }
+        catch(err){
+            console.log(err);
+            setload(false);
+        }
+        
+    }
+
+
+    const inputList = (
+        <Grid container columnSpacing={2} rowSpacing={2}>
+            <Grid item container>
+                <Typography variant="span" component="div">Video Details</Typography>
+            </Grid>
+            <Grid item container direction='column'>
+                <div className={classes.Info}>
+                    Please follow steps given below to add youtube videos
+                </div>
+                <ul className={classes.SubInfo}>
+                    <li>Go to Youtube, Click on video to play</li>
+                    <li>Click on share icon under the video</li>
+                    <li>Click on Embed icon</li>
+                    <li>You will find <b>src</b> field, copy the value of <b>src</b> field</li>
+                    <li>Paste in Video URL input box</li>
+                </ul>
+                
+            </Grid>
+            <Grid item xs={12} sm={6} md={4} lg={4}
+                className={classes.Input}>
+                <TextField variant="filled" 
+                            color='secondary'
+                            label="Heading"
+                            focused
+                            fullWidth
+                            onChange={(e)=>setname(e.target.value)}/>
+            </Grid>
+            <Grid item xs={12} sm={6} md={4} lg={4}
+                className={classes.Input}>
+                <TextField variant="filled" 
+                            color='secondary'
+                            label="Details"
+                            focused
+                            fullWidth
+                            onChange={(e)=>setdescription(e.target.value)}/>
+            </Grid>
+            <Grid item xs={12} sm={6} md={4} lg={4}
+                className={classes.Input}>
+                <TextField variant="filled" 
+                            color='secondary'
+                            label="Video URL"
+                            focused
+                            fullWidth
+                            onChange={(e)=>setvideo(e.target.value)}/>
+            </Grid>
+            
+            <Grid item container >
+                <Button variant='outlined'
+                        sx={{marginRight:'1rem'}}
+                        onClick={onSubmitHandler}>Submit</Button>
+                <Button variant='outlined'
+                        color="fifth"
+                        onClick={closeInputList}
+                        >Cancel</Button>
+            </Grid>
+        </Grid>
+    )
+
+    return (
+        <Grid container
+              className={classes.Images}>
+            <Grid item container sx={{alignItems:'center'}}>
+                <Grid item sx={{flex:'0.4'}}>
+                    { !addVideo &&
+                        <Button variant='outlined' 
+                                color='primary'
+                                sx={{width:'50%'}}
+                                onClick={(e)=>setaddVideo(true)}>
+                            Add
+                        </Button>
+                    }
+                </Grid>
+            </Grid>
+            <Grid item container sx={{marginBottom:'1rem'}}>
+                {/* Education Details Adding Section */}
+                {
+                    addVideo && inputList
+                }
+                
+            </Grid>
+            <Grid item container sx={{marginBottom:'1rem'}}>
+                {/* Education List */}
+                {
+                    videosList && videosList.map((item, i)=> (
+                        <Grid key={item._id} item xs={12} sm={12} md={6} lg={6} >
+                            <Card className={classes.Card}>
+                                <CardActionArea>
+                                    <CardContent>
+                                        <Typography variant="div" >
+                                            <Typography variant="span">Heading:</Typography>
+                                            <Typography variant='h6'
+                                                        gutterBottom
+                                                        component="div">
+                                                {item.name}
+                                            </Typography>
+                                        </Typography>
+                                        <Typography variant="div" >
+                                            <Typography variant="span">Details:</Typography>
+                                            <Typography variant='h6'
+                                                        gutterBottom
+                                                        component="div">
+                                                {item.description}
+                                            </Typography>
+                                        </Typography>
+                                        <Typography variant="div" >
+                                            <Typography variant="span">Image URL:</Typography>
+                                            <Typography variant='h6'
+                                                gutterBottom
+                                                component="div">
+                                                     <Link href={item.skillImage}
+                                                        underline='hover'
+                                                        color='inherit'
+                                                        target="_blank">
+                                                  {item.video}
+                                                  </Link> 
+                                            </Typography>
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                                <CardActions>
+                                    <Button variant='outlined'
+                                        color="fifth"
+                                        className={classes.cardButton}
+                                        onClick={
+                                            ()=>deleteVideo(item._id)
+                                        }
+                                        sx={{
+                                            width:'40%'}}>Delete</Button>
+                                </CardActions>
+                            </Card>
+                        </Grid>
+                    
+                    ))
+                }
+                
+            </Grid>
+            {load && <Spinner/>}
+        </Grid>
+        
+    )
+}
+
+export default Videos;
+

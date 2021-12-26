@@ -93,10 +93,15 @@ const profileSchema = Schema({
     ],
 
     extra : {
-        personalImages: [String],
+        personalImages: [{
+            name: String,
+            description: String,
+            image: String
+        }],
         personalVideos: [{
+            name: String,
+            description: String,
             video: String,
-            description: String
         }],
 
     }   

@@ -95,6 +95,22 @@ const profile = createSlice({
                 secondary:''
             };
         },
+        updateImage:(state, action)=> {
+            state.profile.extra.personalImages.push(action.payload);
+        },
+        removeImage:(state, action)=>{
+            const id= action.payload;
+            const index = state.profile.extra.personalImages.findIndex(item=> item._id === id);
+            state.profile.extra.personalImages.splice(index, 1);
+        },
+        updateVideo: (state, action)=> {
+            state.profile.extra.personalVideos.push(action.payload);
+        },
+        removeVideo:(state,action)=> {
+            const id= action.payload;
+            const index = state.profile.extra.personalVideos.findIndex(item=> item._id === id);
+            state.profile.extra.personalVideos.splice(index, 1);
+        }
 
     },
     extraReducers: {
@@ -120,6 +136,10 @@ export const {
                 updateSocial,
                 removeSocial,
                 updateMobile,
-                removeMobile 
+                removeMobile,
+                updateImage,
+                removeImage,
+                updateVideo,
+                removeVideo 
                 } = profile.actions;
 export default profile.reducer;
