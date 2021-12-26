@@ -48,6 +48,12 @@ const userSlice= createSlice({
         userLogout: (state, action) => {
             state.token="";
             state.user= null;
+        },
+        changeUserName: (state, action)=> {
+            state.user.name= action.payload;
+        },
+        removeProfilePic: (state, action) =>{
+            state.user.image="";
         }
     },
     extraReducers: {
@@ -58,6 +64,7 @@ const userSlice= createSlice({
 });
 
 
-export const {setUser, setToken, setError, userLogout} = userSlice.actions;
+export const {setUser, setToken, setError, userLogout,
+changeUserName, removeProfilePic} = userSlice.actions;
 
 export default userSlice.reducer;

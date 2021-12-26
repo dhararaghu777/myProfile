@@ -40,7 +40,7 @@ router.get("/",[auth], async (req, res) => {
 //---------------------- POST ----------------------------------
 
 // method: POST
-// usage: update profile social details
+// usage: update profile catergory details
 
 router.post("/:category",[auth], async (req, res) => {
 
@@ -69,7 +69,7 @@ router.post("/:category",[auth], async (req, res) => {
 
             case "mobile":
                 values = profileObj.mobile(req, res);
-                profile.mobile.push(values);
+                profile.mobile= values;
                 break;
             
             case "skills": 
@@ -134,5 +134,96 @@ router.post("/:category",[auth], async (req, res) => {
     }
 })
 
+
+// method: DELETE
+// usage: delete profile social details
+
+router.delete("/:category/:id",[auth], async (req, res) => {
+
+    
+    try {
+
+        let profile = await Profile.findOne({user: req.user.id});
+
+        if(!profile) {
+            return res.status(400).json({errors: [{
+                msg: "No profile found"
+            }]})
+        }
+
+        const {category,id} =  req.params;
+        console.log(category, id);
+
+        let index ;
+        let values = null;
+        switch(category) {
+
+            case "social":
+                profile.social= {
+                    linked:'',
+                    youtube: '',
+                    facebook:'',
+                    github:'',
+                    instagram:''
+                };
+                break;
+
+            case "mobile":
+                profile.mobile= {
+                    primary:'',
+                    secondary:''
+                }
+                break;
+            
+            case "skills": 
+                index= profile.skills.findIndex(item=> item._id==id);
+                profile.skills.splice(index,1);
+                break;
+            
+            case "experience":
+                index= profile.experience.findIndex(item=> item._id==id);
+                profile.experience.splice(index,1);
+                break;
+
+            case "education":
+                index= profile.education.findIndex(item=> item._id==id);
+                profile.education.splice(index,1);
+                break;
+            
+            case "projects":
+                index= profile.projects.findIndex(item=> item._id==id);
+                profile.projects.splice(index,1);
+                break;
+                
+            case "achievements":
+                index= profile.achievements.findIndex(item=> item._id==id);
+                profile.achievements.splice(index,1);
+                break;
+            
+            case "extraImage": 
+                
+                break;
+
+            case "extraVideo":
+                
+                break;
+            
+
+        }
+
+
+        await profile.save();
+        
+        res.status(200).json(`Id ${id} deleted successfully`);
+    
+    }
+    catch(e) {
+
+        console.log(e);
+        return res.status(500).json({errors: [{
+            msg: "Server error"
+        }]})
+    }
+})
 
 module.exports = router;

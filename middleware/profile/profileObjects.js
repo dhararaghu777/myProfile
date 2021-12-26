@@ -2,13 +2,14 @@
 
 const social = (req, res) => {
    
-    const {linkedIn, instagram, youtube, facebook} = req.body;
+    const {linkedIn, instagram, youtube, facebook, github} = req.body;
 
     const socialDetails = {
         linkedIn,
         instagram,
         youtube,
-        facebook
+        facebook,
+        github
     }
 
     return socialDetails;
@@ -16,17 +17,20 @@ const social = (req, res) => {
 
 const mobile = (req, res) => {
 
-    const {mobile} = req.body;
-    return mobile;
+    const {primary, secondary} = req.body;
+    return {
+        primary: primary,
+        secondary: secondary
+    };
 }
 
 
 const  skills = (req, res) => {
-    const {name, image} = req.body;
+    const {skillName, skillImage} = req.body;
 
     const skillDetails = {
-        skillName : name,
-        skillImage: image
+        skillName : skillName,
+        skillImage: skillImage
     }
 
     return skillDetails;
@@ -34,11 +38,12 @@ const  skills = (req, res) => {
 
 
 const experience = (req, res) => {
-    const {name, location, yoe, from , to, current} = req.body;
+    const {companyName, location, yoe, from , to, current, position} = req.body;
 
      const details = {
-         companyName: name,
+         companyName: companyName,
          location: location,
+         position:position,
          yoe: yoe,
          from: new Date(from),
          to: new Date(to),
@@ -50,11 +55,11 @@ const experience = (req, res) => {
 
 
 const project = (req, res) => {
-    const {name, url, duration, from, to, current} = req.body;
+    const {projectName, projectUrl, duration, from, to, current} = req.body;
 
     const details = {
-        projectName: name,
-        projectUrl: url,
+        projectName: projectName,
+        projectUrl: projectUrl,
         duration: duration,
         from: new Date(from),
         to: new Date(to),

@@ -13,7 +13,7 @@ import { styled } from '@mui/material/styles';
 import { useTheme } from '@emotion/react';
 import Spinner from '../Spinner/Spinner';
 import {fetchProfile} from '../../store/userProfileSlice';
-import { fetchUser } from '../../store/userInfoSlice';
+import { fetchUser, changeUserName, removeProfilePic } from '../../store/userInfoSlice';
 
 const Input = styled('input')({
     display: 'none',
@@ -23,16 +23,13 @@ let useStyles= makeStyles((theme)=> ({
 
     profileInfo : {
         // minHeight: '20rem',
-        backgroundColor: "#F1FAEE",
-        margin: 0,
+        backgroundColor:'#fff',
         padding: '0.5rem',
         borderRadius: '0.3rem',
         boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px',
         position: 'relative'
     },
     item: {
-
-        // margin: 0,
         padding: '1rem',
     },
    
@@ -42,8 +39,6 @@ let useStyles= makeStyles((theme)=> ({
 
     imageBox: {
         flex: 1,
-        // margin: 0,
-        // padding: 0,
         display: "flex",
         alignItems:'center',
         justifyContent:'center',
@@ -137,9 +132,17 @@ function ProfileInfo() {
 
     //store file 
     const handlePhoto = (e)=>{
-        setphoto(e.target.files[0]);
+        const image = e.target.files[0];
+        const maxSize = 1024*1024;
+        if(image.size > maxSize)
+        {
+            alert('Please select a image less than 1 MB');
+            return;
+        }
+        setphoto(image);
     }
-
+    
+    
     //upload profilepic
     const submitPic= async (e)=>{
         e.preventDefault();
@@ -190,9 +193,9 @@ function ProfileInfo() {
 
         const res = await axios.post('/users/name',data, config);
         setedit(false);
+        
+        dispatch(changeUserName(name));
         setloading((prev)=> false);
-
-        dispatch(fetchUser(token));
             
         } catch (err) {
             setloading((prev)=> false);
@@ -214,9 +217,9 @@ function ProfileInfo() {
         try {
 
             const res = await axios.post('/users/remove', {},config);
+           
+            dispatch(removeProfilePic());
             setloading(false);
-
-            dispatch(fetchUser(token));
  
         } 
         catch (err) {
@@ -227,7 +230,7 @@ function ProfileInfo() {
     }
 
     return (
-        <Grid container className={classes.profileInfo} spacing={2} columnSpacing={2} >
+        <Grid container className={classes.profileInfo}  >
             <Grid item  xs={12} sm={12} md={5} className={classes.item}>
                 <Grid container className={classes.imageSection} spacing={1}>
                     <Grid item xs={12} sm={6} md={6}
@@ -282,7 +285,7 @@ function ProfileInfo() {
                 </Grid>
                 
             </Grid>
-            <Grid item xs={12} sm={12} md={7} className={classes.item} spacing={2}>
+            <Grid item xs={12} sm={12} md={7} className={classes.item}>
                 <Grid container spacing={2} columns={12} columnSpacing={3}>
                     <Grid item xs={12} sm={6} md={6} >
                         <TextField 
@@ -353,9 +356,9 @@ function ProfileInfo() {
                     }
                 </Grid>
             </Grid>
-            <Grid item>
-                {loading && <Spinner />}
-            </Grid>
+                
+            {loading && <Spinner />}
+            
         </Grid>
     )
 }

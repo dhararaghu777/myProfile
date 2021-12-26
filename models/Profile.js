@@ -11,7 +11,14 @@ const profileSchema = Schema({
         type: String
     },
 
-    mobile : [String],
+    mobile : {
+        primary: {
+            type: String
+        },
+        secondary: {
+            type: String
+        }
+    },
 
     social: {
         linkedIn: {
@@ -25,6 +32,9 @@ const profileSchema = Schema({
         },
         instagram: {
             type: String
+        },
+        github:{
+            type: String
         }
     },
 
@@ -37,6 +47,7 @@ const profileSchema = Schema({
         {
             companyName: String,
             location: String,
+            position:String,
             yoe: String,
             from: Date,
             to: Date,
