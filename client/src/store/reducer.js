@@ -1,11 +1,12 @@
-import {configureStore} from '@reduxjs/toolkit';
-import userInfoSlice from './userInfoSlice';
-import userDetailsSlice from './userProfileSlice';
-import userProfile from './userProfileSlice';
+import { configureStore } from '@reduxjs/toolkit'
+import userInfoSlice from './userInfoSlice'
+import userProfile from './userProfileSlice'
+import myProfileSlice from './myProfileSlice'
 
 export default configureStore({
-    reducer :{
-        userInfo: userInfoSlice,
-        profileInfo: userProfile
-    }
-});
+  reducer: {
+    userInfo: userInfoSlice,
+    profileInfo: userProfile,
+    myProfile: myProfileSlice,
+  },
+})

@@ -11,18 +11,18 @@ import {
   Link,
   TextField,
   Typography,
-  useMediaQuery,
   useTheme,
+  useMediaQuery,
 } from '@mui/material'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Spinner from '../Spinner/Spinner'
 import { makeStyles } from '@mui/styles'
 import axios from '../../axios'
-import { updateSkill, removeSkill } from '../../store/userProfileSlice'
+import { updateAbout, removeAbout } from '../../store/userProfileSlice'
 
 let useStyles = makeStyles((theme) => ({
-  Skills: {
+  Mobile: {
     padding: '0.8rem 1rem',
     backgroundColor: '#fff',
     marginTop: '1rem',
@@ -64,29 +64,26 @@ let useStyles = makeStyles((theme) => ({
   },
 }))
 
-function Skills() {
+function About() {
   const classes = useStyles()
   const theme = useTheme()
   const media = useMediaQuery(theme.breakpoints.down('sm'))
   const [load, setload] = useState(false)
   const token = useSelector((state) => state.userInfo.token)
-  const skillList = useSelector((state) => state.profileInfo.profile.skills)
+  const aboutObj = useSelector((state) => state.profileInfo.profile.about)
   const dispatch = useDispatch()
-  const [addSkill, setaddSkill] = useState(false)
-  const [skillName, setSkillName] = useState('')
-  const [skillImage, setskillImage] = useState('')
+  const [addAbout, setaddAbout] = useState(false)
+  const [about, setabout] = useState('')
 
   const closeInputList = (e) => {
-    setaddSkill(false)
-    setSkillName('')
-    setskillImage('')
+    setaddAbout(false)
+    setabout('')
   }
 
   const onSubmitHandler = async (e) => {
     setload(true)
     const data = {
-      skillName: skillName,
-      skillImage: skillImage,
+      about: about,
     }
 
     const config = {
@@ -96,20 +93,18 @@ function Skills() {
     }
 
     try {
-      const res = await axios.post('/profile/skills', data, config)
-      console.log('Updated Skills', res.data)
-      dispatch(updateSkill(res.data))
+      const res = await axios.post('/profile/about', data, config)
+      dispatch(updateAbout(res.data))
       setload(false)
-      setaddSkill(false)
+      setaddAbout(false)
     } catch (err) {
       console.log(err)
       setload(false)
-      setaddSkill(false)
+      setaddAbout(false)
     }
   }
 
-  const deleteSkill = async (id) => {
-    const skillId = id
+  const deleteAbout = async () => {
     setload(true)
     const config = {
       headers: {
@@ -118,8 +113,8 @@ function Skills() {
     }
 
     try {
-      const res = await axios.delete(`profile/skills/${skillId}`, config)
-      dispatch(removeSkill(skillId))
+      const res = await axios.delete(`profile/about/${0}`, config)
+      dispatch(removeAbout())
       setload(false)
     } catch (err) {
       console.log(err)
@@ -131,27 +126,17 @@ function Skills() {
     <Grid container columnSpacing={2} rowSpacing={2}>
       <Grid item container>
         <Typography variant='span' component='div'>
-          Skill Details
+          About Yourself
         </Typography>
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={4} className={classes.Input}>
         <TextField
           variant='filled'
           color='secondary'
-          label='Skill Name'
+          label='About'
           focused
           fullWidth
-          onChange={(e) => setSkillName(e.target.value)}
-        />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4} lg={4} className={classes.Input}>
-        <TextField
-          variant='filled'
-          color='secondary'
-          label='Skill Image URL (optional)'
-          focused
-          fullWidth
-          onChange={(e) => setskillImage(e.target.value)}
+          onChange={(e) => setabout(e.target.value)}
         />
       </Grid>
 
@@ -174,13 +159,13 @@ function Skills() {
     <Grid container className={classes.Skills}>
       <Grid item container sx={{ alignItems: 'center' }}>
         <Grid item sx={{ flex: '0.4' }}>
-          {!addSkill && (
+          {!addAbout && (
             <Button
               variant='outlined'
               color='primary'
               sx={{ width: '50%' }}
               size={media ? 'small' : ''}
-              onClick={(e) => setaddSkill(true)}
+              onClick={(e) => setaddAbout(true)}
             >
               Add
             </Button>
@@ -189,58 +174,44 @@ function Skills() {
       </Grid>
       <Grid item container sx={{ marginBottom: '1rem' }}>
         {/* Education Details Adding Section */}
-        {addSkill && inputList}
+        {addAbout && inputList}
       </Grid>
       <Grid item container sx={{ marginBottom: '1rem' }}>
         {/* Education List */}
-        {skillList &&
-          skillList.map((item, i) => (
-            <Grid key={item._id} item xs={12} sm={12} md={6} lg={6}>
-              <Card className={classes.Card}>
-                <CardActionArea>
-                  <CardContent>
-                    <Typography variant='div' className={classes.Text}>
-                      <Typography variant='span'>Skill Name:</Typography>
-                      <Typography variant='h6' gutterBottom>
-                        {item.skillName}
-                      </Typography>
+        {aboutObj && (
+          <Grid item xs={12} sm={12} md={6} lg={6}>
+            <Card className={classes.Card}>
+              <CardActionArea>
+                <CardContent>
+                  <Typography variant='div' className={classes.Text}>
+                    <Typography variant='span'>About Yourself:</Typography>
+                    <Typography variant='h6' gutterBottom>
+                      {aboutObj}
                     </Typography>
-                    <Typography variant='div' className={classes.Text}>
-                      <Typography variant='span'>Skill Image URL:</Typography>
-                      <Typography variant='h6' gutterBottom>
-                        <Link
-                          href={item.skillImage}
-                          underline='hover'
-                          color='inherit'
-                          target='_blank'
-                        >
-                          {item.skillImage}
-                        </Link>
-                      </Typography>
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-                <CardActions>
-                  <Button
-                    variant='outlined'
-                    color='fifth'
-                    className={classes.cardButton}
-                    size={media ? 'small' : ''}
-                    onClick={() => deleteSkill(item._id)}
-                    sx={{
-                      width: '40%',
-                    }}
-                  >
-                    Delete
-                  </Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <Button
+                  variant='outlined'
+                  color='fifth'
+                  className={classes.cardButton}
+                  size={media ? 'small' : ''}
+                  onClick={() => deleteAbout()}
+                  sx={{
+                    width: '40%',
+                  }}
+                >
+                  Delete
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        )}
       </Grid>
       {load && <Spinner />}
     </Grid>
   )
 }
 
-export default Skills
+export default About

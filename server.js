@@ -1,33 +1,34 @@
-const express = require('express');
-const app = express();
+const express = require('express')
+const app = express()
 
-const connectDB = require('./config/db');
-const cors = require('cors');
+const connectDB = require('./config/db')
+const cors = require('cors')
 
-app.use(cors());
+app.use(cors())
 
 // initiating port
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000
 
 // json formate
-app.use(express.json());
+app.use(express.json())
 
 //connecting database
-connectDB((err, res)=> {
-    console.log('Database connected');
-});
+connectDB((err, res) => {
+  console.log('Database connected')
+})
 
 // initiate backend server
 app.get('/', (req, res) => {
-    res.send('Hello Backend');
+  res.send('Hello Backend')
 })
 
 // API routes
-app.use('/api/signin', require('./routes/api/signIn'));
-app.use('/api/login', require('./routes/api/login'));
-app.use('/api/users', require('./routes/api/users'));
-app.use('/api/profilePic', require('./routes/api/profilePic'));
-app.use('/api/profile', require('./routes/api/profile'));
+app.use('/api/signin', require('./routes/api/signIn'))
+app.use('/api/login', require('./routes/api/login'))
+app.use('/api/users', require('./routes/api/users'))
+app.use('/api/profilePic', require('./routes/api/profilePic'))
+app.use('/api/profile', require('./routes/api/profile'))
+app.use('/api/myprofile', require('./routes/api/myprofile'))
 
 // launching server
-app.listen(PORT);
+app.listen(PORT)
