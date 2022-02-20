@@ -91,7 +91,7 @@ export default function AccountMenu() {
           <Avatar /> Profile
         </MenuItem>
         <MenuItem  component={Link} to={`/user/${user && user.username}`}>
-          <Avatar /> My account
+          <Avatar /> My Website
         </MenuItem>
         <Divider />
         <MenuItem>

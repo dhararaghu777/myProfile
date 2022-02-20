@@ -67,7 +67,7 @@ const componentsList = [
     id: 4,
   },
   {
-    name: 'Skills',
+    name: 'Technical Skills',
     component: () => <Skills />,
     id: 5,
   },
@@ -114,7 +114,7 @@ function Profile() {
     setloading(true)
     setTimeout(() => {
       setloading((prev) => false)
-    }, 1000)
+    }, 500)
   }, [])
 
   return (

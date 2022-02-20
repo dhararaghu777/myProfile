@@ -23,11 +23,11 @@ const mobile = (req, res) => {
 }
 
 const skills = (req, res) => {
-  const { skillName, skillImage } = req.body
+  const { skillName, level } = req.body
 
   const skillDetails = {
     skillName: skillName,
-    skillImage: skillImage,
+    level: level,
   }
 
   return skillDetails
@@ -50,27 +50,29 @@ const experience = (req, res) => {
 }
 
 const project = (req, res) => {
-  const { projectName, projectUrl, duration, from, to, current } = req.body
+  const { projectName, projectUrl,details, duration, from, to, current } = req.body
 
-  const details = {
+  const project_details = {
     projectName: projectName,
     projectUrl: projectUrl,
+    details: details,
     duration: duration,
     from: new Date(from),
     to: new Date(to),
     current: current,
   }
 
-  return details
+  return project_details
 }
 
 const achievement = (req, res) => {
-  const { name, details, date } = req.body
+  const { name, details, date, url } = req.body
 
   const detailObj = {
     name: name,
     details: details,
     date: new Date(date),
+    url: url,
   }
 
   return detailObj

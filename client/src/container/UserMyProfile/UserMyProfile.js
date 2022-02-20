@@ -7,7 +7,15 @@ import Header from './container/Header';
 import { Container, Grid } from '@mui/material';
 import {makeStyles} from '@mui/styles'
 import First from './container/First';
+import About from './container/About'
 import Spinner from '../../components/Spinner/Spinner';
+import Experience from './container/Experience';
+import Education from './container/Education';
+import Project from './container/Project';
+import Skill from './container/Skill';
+import Achievement from './container/Acheivement';
+import Images from './container/Images';
+import Video from './container/Video'
 
 const useStyles = makeStyles((theme) => ({
     UserMyProfile: {
@@ -24,6 +32,7 @@ function UserMyProfile() {
   const params = useParams()
   const dispatch = useDispatch();
   const [userData, setuserData] = useState(false);
+  const userProfile= useSelector((state)=>state.myProfile);
 
   // Access user data
   useEffect(() => {
@@ -57,6 +66,14 @@ function UserMyProfile() {
             userData? (
               <>
                 <First/>
+               {userProfile.profile.about.length > 0 ? <About />:null}
+               {userProfile.profile.experience.length > 0 ? <Experience />: null}
+               {userProfile.profile.education.length > 0 ? <Education />: null}
+               {userProfile.profile.projects.length > 0 ? <Project />: null}
+               {userProfile.profile.skills.length > 0 ? <Skill />: null}
+               {userProfile.profile.achievements.length > 0 ? <Achievement />: null}
+               {userProfile.profile.extra.personalImages.length > 0 ? <Images />: null}
+               {userProfile.profile.extra.personalVideos.length > 0 ? <Video />: null}
               </>
             ):<Spinner/>
           }

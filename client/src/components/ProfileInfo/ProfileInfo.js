@@ -12,14 +12,14 @@ import {
   Grid,
   Stack,
   TextField,
+  Typography,
   useMediaQuery,
 } from '@mui/material'
 import { makeStyles } from '@mui/styles'
-import { borderColor, Box, height } from '@mui/system'
+import { Box} from '@mui/system'
 import { styled } from '@mui/material/styles'
 import { useTheme } from '@emotion/react'
 import Spinner from '../Spinner/Spinner'
-import { fetchProfile } from '../../store/userProfileSlice'
 import {
   fetchUser,
   changeUserName,
@@ -138,7 +138,8 @@ function ProfileInfo() {
       alert('Please select a image less than 1 MB')
       return
     }
-    setphoto(image)
+    setphoto(image);
+    console.log("image",image);
   }
 
   //upload profilepic
@@ -294,6 +295,12 @@ function ProfileInfo() {
             </Stack>
           </Grid>
         </Grid>
+        <Grid item sx={{padding:'0.4rem'}}>
+          <Typography sx={{color:'green'}}
+                variant="caption">
+            *Better upload .PNG file for your profile pic
+          </Typography>
+      </Grid>
       </Grid>
       <Grid item xs={12} sm={12} md={7} className={classes.item}>
         <Grid container item spacing={2} columns={12} columnSpacing={3}>
@@ -383,7 +390,7 @@ function ProfileInfo() {
           )}
         </Grid>
       </Grid>
-
+      
       {loading && <Spinner />}
     </Grid>
   )

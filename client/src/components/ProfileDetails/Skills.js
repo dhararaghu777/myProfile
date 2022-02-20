@@ -8,7 +8,10 @@ import {
   FormControl,
   FormControlLabel,
   Grid,
+  InputLabel,
   Link,
+  MenuItem,
+  Select,
   TextField,
   Typography,
   useMediaQuery,
@@ -74,19 +77,19 @@ function Skills() {
   const dispatch = useDispatch()
   const [addSkill, setaddSkill] = useState(false)
   const [skillName, setSkillName] = useState('')
-  const [skillImage, setskillImage] = useState('')
+  const [level, setlevel] = useState('')
 
   const closeInputList = (e) => {
     setaddSkill(false)
     setSkillName('')
-    setskillImage('')
+    setlevel('')
   }
 
   const onSubmitHandler = async (e) => {
     setload(true)
     const data = {
       skillName: skillName,
-      skillImage: skillImage,
+      level: level,
     }
 
     const config = {
@@ -145,14 +148,22 @@ function Skills() {
         />
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={4} className={classes.Input}>
-        <TextField
-          variant='filled'
-          color='secondary'
-          label='Skill Image URL (optional)'
-          focused
-          fullWidth
-          onChange={(e) => setskillImage(e.target.value)}
-        />
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Skill Level</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            color='secondary'
+            value={level}
+            label="skill level"
+            onChange={(e) => setlevel(e.target.value)}
+          >
+            <MenuItem value="Beginner">Beginner</MenuItem>
+            <MenuItem value="Intermediate">Intermediate</MenuItem>
+            <MenuItem value='Advanced'>Advanced</MenuItem>
+            <MenuItem value='Expert'>Expert</MenuItem>
+          </Select>
+        </FormControl>
       </Grid>
 
       <Grid item container>
@@ -206,15 +217,15 @@ function Skills() {
                       </Typography>
                     </Typography>
                     <Typography variant='div' className={classes.Text}>
-                      <Typography variant='span'>Skill Image URL:</Typography>
+                      <Typography variant='span'>Skill Level:</Typography>
                       <Typography variant='h6' gutterBottom>
                         <Link
-                          href={item.skillImage}
+                          href={item.level}
                           underline='hover'
                           color='inherit'
                           target='_blank'
                         >
-                          {item.skillImage}
+                          {item.level}
                         </Link>
                       </Typography>
                     </Typography>

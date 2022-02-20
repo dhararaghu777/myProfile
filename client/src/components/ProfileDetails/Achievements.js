@@ -81,12 +81,14 @@ function Achievements() {
   const [achievementName, setachievementName] = useState('')
   const [achievementDetails, setachievementDetails] = useState('')
   const [date, setdate] = useState('')
+  const [url, seturl]= useState('')
 
   const closeInputList = (e) => {
     setaddAchievement(false)
     setachievementName('')
     setachievementDetails('')
     setdate('')
+    seturl('')
   }
 
   const onSubmitHandler = async (e) => {
@@ -95,6 +97,7 @@ function Achievements() {
       name: achievementName,
       details: achievementDetails,
       date: date,
+      url: url
     }
 
     const config = {
@@ -173,6 +176,17 @@ function Achievements() {
           onChange={(e) => setdate(e.target.value)}
         />
       </Grid>
+      <Grid item xs={12} sm={6} md={4} lg={4} className={classes.Input}>
+        <TextField
+          variant='filled'
+          color='secondary'
+          label='Achievement URL (optional)'
+          type='type'
+          focused
+          fullWidth
+          onChange={(e) => seturl(e.target.value)}
+        />
+      </Grid>
 
       <Grid item container>
         <Button
@@ -234,6 +248,19 @@ function Achievements() {
                       <Typography variant='span'>Date:</Typography>
                       <Typography variant='h6' gutterBottom>
                         {item.date}
+                      </Typography>
+                    </Typography>
+                    <Typography variant='div' className={classes.Text}>
+                    <Typography variant='span'>URL:</Typography>
+                      <Typography variant='h6' gutterBottom>
+                        <Link
+                          href={item.projectUrl}
+                          underline='hover'
+                          color='inherit'
+                          target='_blank'
+                        >
+                          {item.url}
+                        </Link>
                       </Typography>
                     </Typography>
                   </CardContent>

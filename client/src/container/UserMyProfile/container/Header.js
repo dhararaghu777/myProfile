@@ -9,7 +9,7 @@ import Slide from '@mui/material/Slide';
 import {makeStyles} from '@mui/styles';
 import { Button, Container, Link } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
-
+import {NavLink} from 'react-router-dom';
 const useStyles= makeStyles((theme) => ({
 
     AppBar: {
@@ -35,26 +35,24 @@ const useStyles= makeStyles((theme) => ({
     },
     content:{
         padding:'0 0.5rem',
-        borderRadius: '0.5rem',
+        marginLeft:'1.5rem !important',
         '&:hover':{
             cursor: "pointer",
-            // transition:'all 0.250s linear',
-            // transform:'scale(1.05)',
-            // border: '1px solid #fff',
         
         },
         [theme.breakpoints.down('sm')]:{
             padding:'0',
-            // '&:hover':{
-            //     transition:'none',
-            //     border: 'none',
-            //     transform:'scale(1)'
-            // }
         }
         
     },
     SpaceDiv:{
       marginBotton: '70px'
+    },
+    NavLink:{
+      textTransform: "capitalize",
+      textDecoration: "none",
+      color: "inherit",
+      
     }
 }))
 
@@ -96,15 +94,17 @@ const classes= useStyles();
             </Typography>
             <Typography 
             component="div"
-            sx={{marginRight:'1.5rem'}}
+            sx={{}}
             className={classes.content}>
-                Home
+                <NavLink to="/" 
+                  className={classes.NavLink}>Home</NavLink>
             </Typography>
             <Typography 
                 component="div"
-                sx={{marginRight:'1.5rem'}}
+                sx={{}}
                 className={classes.content}>
-                Admin
+                <NavLink to="/admin"
+                  className={classes.NavLink} >Admin</NavLink>
             </Typography>
           </Toolbar>
         </AppBar>

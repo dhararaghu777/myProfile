@@ -62,6 +62,14 @@ let useStyles = makeStyles((theme) => ({
       },
     },
   },
+  Info: {
+    fontSize: '0.9rem',
+    color: 'green',
+  },
+  SubInfo: {
+    fontSize: '0.8rem',
+    color: 'green',
+  },
 }))
 
 function Images() {
@@ -138,6 +146,12 @@ function Images() {
         <Typography variant='span' component='div'>
           Image Details
         </Typography>
+      </Grid>
+      <Grid item container direction='column'>
+        <div className={classes.Info}>
+          You can use <a href="https://cloudinary.com/invites/lpov9zyyucivvxsnalc5/eficcrbbaafjmpusmhfj?t=default" target="_blank"  rel="noreferrer">Cloudinary</a> website to store photos online free
+        </div>
+
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={4} className={classes.Input}>
         <TextField

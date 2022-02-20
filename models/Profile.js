@@ -45,7 +45,7 @@ const profileSchema = Schema({
   skills: [
     {
       skillName: String,
-      skillImage: String,
+      level: String,
     },
   ],
 
@@ -79,6 +79,7 @@ const profileSchema = Schema({
     {
       projectName: String,
       projectUrl: String,
+      details: String,
       duration: Number,
       from: Date,
       to: Date,
@@ -94,6 +95,7 @@ const profileSchema = Schema({
       name: String,
       details: String,
       date: Date,
+      url: String,
     },
   ],
 

@@ -11,7 +11,7 @@ const uploadCloud = require('../../middleware/image')
 //usage: Setting profile pic
 router.post('/', [auth, uploadCloud.single('profile')], async (req, res) => {
   try {
-    console.log(req.file)
+    console.log(req.file.path)
 
     if (!req.file) {
       return res.status(400).json({ errors: ['Failed to upload'] })
@@ -25,11 +25,9 @@ router.post('/', [auth, uploadCloud.single('profile')], async (req, res) => {
 
     res.status(200).json({ msg: 'Profile pic uploaded successfully' })
   } catch (err) {
-    res.status(500).json({ errors: ['Server error'] })
+    res.status(404).json({ errors: ['Server error'] })
   }
 })
 
-// method: GET
-// usage: get profile pic
 
 module.exports = router

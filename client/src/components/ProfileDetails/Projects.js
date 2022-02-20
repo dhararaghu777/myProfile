@@ -74,6 +74,7 @@ function Projects() {
   const dispatch = useDispatch()
   const [addProject, setaddProject] = useState(false)
   const [projectName, setprojectName] = useState('')
+  const [details, setdetails]= useState("")
   const [projectUrl, setprojectUrl] = useState('')
   const [duration, setduration] = useState('')
   const [from, setfrom] = useState('')
@@ -83,6 +84,7 @@ function Projects() {
   const closeInputList = (e) => {
     setaddProject(false)
     setprojectName('')
+    setdetails('')
     setprojectUrl('')
     setduration('')
     setfrom('')
@@ -95,6 +97,7 @@ function Projects() {
     const data = {
       projectName: projectName,
       projectUrl: projectUrl,
+      details: details,
       duration: duration,
       from: new Date(from),
       to: new Date(to),
@@ -153,6 +156,16 @@ function Projects() {
           focused
           fullWidth
           onChange={(e) => setprojectName(e.target.value)}
+        />
+      </Grid>
+      <Grid item xs={12} sm={6} md={4} lg={4} className={classes.Input}>
+        <TextField
+          variant='filled'
+          color='secondary'
+          label='Project Details'
+          focused
+          fullWidth
+          onChange={(e) => setdetails(e.target.value)}
         />
       </Grid>
       <Grid item xs={12} sm={6} md={4} lg={4} className={classes.Input}>
@@ -260,6 +273,12 @@ function Projects() {
                       <Typography variant='span'>Project Name:</Typography>
                       <Typography variant='h6' gutterBottom>
                         {item.projectName}
+                      </Typography>
+                    </Typography>
+                    <Typography variant='div' className={classes.Text}>
+                      <Typography variant='span'>Project Details:</Typography>
+                      <Typography variant='h6' gutterBottom>
+                        {item.details}
                       </Typography>
                     </Typography>
                     <Typography variant='div' className={classes.Text}>
