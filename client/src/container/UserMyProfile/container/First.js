@@ -54,19 +54,35 @@ const useStyles = makeStyles((theme) => ({
 
   },
   MyProfileImage: {
-    width: '15rem',
-    height: '17rem',
-    borderRadius:'1rem',
-    [theme.breakpoints.down('sm')]:{
-      width: '10rem',
-      height: '12rem',
+    
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+
+    '& div': {
+      maxWidth: '15rem',
+      maxHeight: '18rem',
+      minWidth: '10rem',
+      minHeight: '13rem',
+      boxSizing: 'border-box',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      overflow: 'hidden',
+      borderRadius: '0.15rem',
+      '& img': {
+        width: '100%',
+        height: '100%',
+        objectFit: 'contain',
+      },
+      [theme.breakpoints.down('sm')]:{
+        minWidth: '8rem',
+        minHeight: '11rem',
+        maxWidth: '10rem',
+        maxHeight: '13rem',
+      }
     },
 
-    '& img': {
-      width: '100%',
-      height: '100%',
-      objectFit: 'contain',
-    },
   },
   MyProfileDataGrid:{
     paddingLeft: '3rem',
@@ -142,9 +158,11 @@ function First() {
                       container
                       className={classes.MyProfileImageGrid}>
                       <Grid item className={classes.MyProfileImage}>
-                          <img src={userProfile.user.image ? userProfile.user.image:alternatePic} 
-                          alt='ProfileImage' 
-                          />
+                          <div>
+                            <img src={userProfile.user.image ? userProfile.user.image:alternatePic} 
+                            alt='ProfileImage' 
+                            />
+                          </div>
                       </Grid>   
                 </Grid>
                 <Grid item container xs={12} sm={7} md={7}

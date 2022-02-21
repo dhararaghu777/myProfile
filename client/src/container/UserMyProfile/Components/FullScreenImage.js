@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { makeStyles } from '@mui/styles';
-import { Box, Button, Container, useMediaQuery, useTheme } from '@mui/material';
+import { Container, useMediaQuery, useTheme } from '@mui/material';
 
 const useStyles = makeStyles((theme) => ({
     Main:{
@@ -14,9 +14,23 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
     },
 
+    ImageDiv:{
+        maxWidth: '55vw',
+        maxHeight: '90vh',
+        minWidth: '35vw',
+        minHeight: '85vh',
+        boxSizing: 'border-box',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden',
+        borderRadius: '0.5rem',
+        
+    },
     ImageSection: {
         width:'100%',
-        height:'100%'
+        height:'100%',
+        objectFit: 'contain',
     }
 }))
 
@@ -24,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
 function FullScreenImage({item, close}) {
 
     const classes = useStyles();
-    const theme= useTheme();
-    const media = useMediaQuery(theme.breakpoints.down('sm'));
+    // const theme= useTheme();
+    // const media = useMediaQuery(theme.breakpoints.down('sm'));
 
 
   return (
@@ -36,16 +50,11 @@ function FullScreenImage({item, close}) {
             alignItems: 'center',
             justifyContent: 'center'
         }} >
-            {/* <Button color="error" onClick={()=>close()}>Close</Button> */}
-            <Box sx={{height: media?'70vh' :'80vh',
-                      width:media?'70vh' :'80vh',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center'}}>
+            <div className={classes.ImageDiv}>
                 <img src={item.image} alt={item.name}
-                    className={classes.ImageSection}
-                />
-            </Box>
+                        className={classes.ImageSection}
+                    />
+            </div>
         </Container>
       </div>
   )
