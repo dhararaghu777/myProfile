@@ -16,7 +16,7 @@ import Skill from './container/Skill';
 import Achievement from './container/Acheivement';
 import Images from './container/Images';
 import Video from './container/Video'
-
+import Details from './container/Details'
 const useStyles = makeStyles((theme) => ({
     UserMyProfile: {
       position: 'relative',
@@ -74,6 +74,7 @@ function UserMyProfile() {
                {userProfile.profile.achievements.length > 0 ? <Achievement />: null}
                {userProfile.profile.extra.personalImages.length > 0 ? <Images />: null}
                {userProfile.profile.extra.personalVideos.length > 0 ? <Video />: null}
+               <Details/>
               </>
             ):<Spinner/>
           }

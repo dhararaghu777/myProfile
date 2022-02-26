@@ -1,8 +1,14 @@
 import React,{useEffect} from 'react'
 import { makeStyles } from '@mui/styles'
 import { useSelector } from 'react-redux';
-import { Container, Grid, Typography } from '@mui/material';
+import { Container, Grid, Link, Typography } from '@mui/material';
 import Spinner from '../../../components/Spinner/Spinner';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import EmailIcon from '@mui/icons-material/Email';
 
 const alternatePic =
   'https://res.cloudinary.com/raghudara/image/upload/v1638719809/programmer_agkrsx.png'
@@ -134,14 +140,49 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]:{
       fontSize:'0.9rem !important',
     }
-  }
+  },
+  Social:{
+    flex:1,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    
+
+  },
+  Icon:{
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    width:'2rem',
+    height:'2rem',
+    marginRight:'0.6rem !important',
+    '& img':{
+        width:'100%',
+        height:'100%',
+    },
+    '& svg':{
+      fontSize:'1.8rem !important',
+      '&:hover':{
+        transform: 'scale(1.1)',
+      },
+      [theme.breakpoints.down('sm')]:{
+        fontSize:'1.5rem !important',
+      }
+    },
+    [theme.breakpoints.down('sm')]:{
+        width:'1.5rem',
+        height:'1.5rem',
+
+    }
+  },
+    
 }))
 
 function First() {
   const classes = useStyles();
   const userProfile= useSelector((state)=>state.myProfile);
   console.log("First",userProfile);
-
+  const item = userProfile.profile.social
   useEffect(() => {
    
   },[])
@@ -186,6 +227,61 @@ function First() {
                               className={classes.Text3}>
                             {userProfile.user.heading}
                         </Typography>
+                    </Grid>
+                    <Grid item container >
+                      <Grid item container className={classes.Social}
+                        sx={{
+                          marginTop:'0.5rem'
+                        }}>
+                        <Link href={'mailto: '+userProfile.user.email} 
+                              className={classes.Icon}
+                              target='_blank'
+                          >
+                          <EmailIcon />
+                        </Link>
+                        
+                        {item.linkedIn &&
+                          (<Link href={item.linkedIn} 
+                                className={classes.Icon}
+                                target='_blank'>
+                            <LinkedInIcon />
+                          </Link>
+                          )
+                        }
+                        {item.instagram &&
+                          (<Link href={item.instagram} 
+                                  className={classes.Icon}
+                                  target='_blank'>
+                            <InstagramIcon />
+                          </Link>
+                          )
+                        }
+                        {item.github &&
+                          (<Link href={item.github} 
+                                  className={classes.Icon}
+                                  target='_blank'>
+                            <GitHubIcon />
+                          </Link>
+                          )
+                        }
+                        {item.youtube &&
+                          (<Link href={item.youtube} 
+                                className={classes.Icon}
+                                target='_blank'>
+                            <YouTubeIcon/>
+                          </Link>
+                          )
+                        }
+                        {item.facebook &&
+                          (<Link href={item.facebook} 
+                                  className={classes.Icon}
+                                  target='_blank'>
+                            <FacebookIcon />
+                          </Link>
+                          )
+                        }
+                        
+                      </Grid>
                     </Grid>
                 </Grid>
             </Grid>):<Spinner/>}

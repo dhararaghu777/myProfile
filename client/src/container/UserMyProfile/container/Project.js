@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@mui/styles';
-import { Box, Button, Card, CardContent, CardMedia, Divider, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Button,Divider, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
 import {useSelector} from 'react-redux'
 import moment from 'moment';
 
