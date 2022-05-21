@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import axios from '../../../axios'
 import { makeStyles } from '@mui/styles'
 import HomeIcon from '@mui/icons-material/Home'
@@ -52,6 +52,7 @@ const theme = createTheme()
 //SingUp
 export default function SignUp() {
   const classes = useStyles()
+  const navigate= useNavigate()
   const [status, setstatus] = React.useState('')
   const [error, seterror] = React.useState('')
 
@@ -83,6 +84,8 @@ export default function SignUp() {
         console.log(res.data)
         setstatus(res.data.response)
         seterror('')
+        //add spinner and successfull template before navigate to Home page
+        navigate('/signin')
       })
       .catch((err) => {
         console.log(err.response.data.errors[0].msg)

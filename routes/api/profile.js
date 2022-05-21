@@ -59,7 +59,6 @@ router.post('/:category', [auth], async (req, res) => {
     const { category } = req.params
     console.log(category)
 
-    let key = ''
     let values = null
     let result = null
     switch (category) {
@@ -174,8 +173,7 @@ router.delete('/:category/:id', [auth], async (req, res) => {
     const { category, id } = req.params
     console.log(category, id)
 
-    let index
-    let values = null
+    let index=null
     switch (category) {
       case 'about':
         profile.about = ''

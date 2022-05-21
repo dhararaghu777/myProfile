@@ -94,7 +94,7 @@ export default function AccountMenu() {
           <Avatar /> My Website
         </MenuItem>
         <Divider />
-        <MenuItem>
+        {/* <MenuItem>
           <ListItemIcon>
             <PersonAdd fontSize='small' />
           </ListItemIcon>
@@ -105,7 +105,7 @@ export default function AccountMenu() {
             <Settings fontSize='small' />
           </ListItemIcon>
           Settings
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem onClick={logoutHandler}>
           <ListItemIcon>
             <Logout fontSize='small' />

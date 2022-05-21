@@ -12,9 +12,10 @@ import { setProfile } from './store/userProfileSlice'
 import Profile from './container/Profile/Profile'
 import { ThemeProvider } from '@mui/material'
 import theme from './components/Theme/Theme'
-import { Navigate, useNavigate, useLocation, useParams } from 'react-router-dom'
+import { Navigate, useLocation } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import UserMyProfile from './container/UserMyProfile/UserMyProfile'
+import Footer from './container/Footer/Footer'
 
 function App() {
   const location = useLocation()
@@ -116,6 +117,7 @@ function App() {
             <Auxilary>
               <Header />
               <Home />
+              <Footer/>
             </Auxilary>
           }
         />

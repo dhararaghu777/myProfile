@@ -17,7 +17,7 @@ router.get('/', auth, async (req, res) => {
     const user = await User.findById(req.user.id).select({ password: 0 })
 
     if (!user) {
-      return res.status(400).json({
+      return res.status(500).json({
         errors: [
           {
             msg: 'Server error',
@@ -26,10 +26,10 @@ router.get('/', auth, async (req, res) => {
       })
     }
     if (!user.access) {
-      return res.status(400).json({
+      return res.status(401).json({
         errors: [
           {
-            msg: 'Server error',
+            msg: "User doesn't have access to their account, please contact admin",
           },
         ],
       })
@@ -86,7 +86,7 @@ router.post(
         return res.status(400).json({
           errors: [
             {
-              msg: 'Invalid credentials',
+              msg: "User doesn't have access to their account, please contact admin",
             },
           ],
         })

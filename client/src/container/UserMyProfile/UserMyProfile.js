@@ -66,14 +66,14 @@ function UserMyProfile() {
             userData? (
               <>
                 <First/>
-               {userProfile.profile.about.length > 0 ? <About />:null}
-               {userProfile.profile.experience.length > 0 ? <Experience />: null}
-               {userProfile.profile.education.length > 0 ? <Education />: null}
-               {userProfile.profile.projects.length > 0 ? <Project />: null}
-               {userProfile.profile.skills.length > 0 ? <Skill />: null}
-               {userProfile.profile.achievements.length > 0 ? <Achievement />: null}
-               {userProfile.profile.extra.personalImages.length > 0 ? <Images />: null}
-               {userProfile.profile.extra.personalVideos.length > 0 ? <Video />: null}
+               {userProfile.profile.about && userProfile.profile.about.length > 0 ? <About />:null}
+               {userProfile.profile.experience && userProfile.profile.experience.length > 0 ? <Experience />: null}
+               {userProfile.profile.education &&  userProfile.profile.education.length > 0 ? <Education />: null}
+               {userProfile.profile.projects && userProfile.profile.projects.length > 0 ? <Project />: null}
+               {userProfile.profile.skills && userProfile.profile.skills.length > 0 ? <Skill />: null}
+               {userProfile.profile.achievements && userProfile.profile.achievements.length > 0 ? <Achievement />: null}
+               {userProfile.profile.extra && userProfile.profile.extra.personalImages.length > 0 ? <Images />: null}
+               {userProfile.profile.extra && userProfile.profile.extra.personalVideos.length > 0 ? <Video />: null}
                <Details/>
               </>
             ):<Spinner/>

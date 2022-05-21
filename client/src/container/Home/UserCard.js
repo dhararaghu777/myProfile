@@ -12,6 +12,7 @@ import {
   useTheme,
 } from '@mui/material'
 import { Box } from '@mui/system'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   Card: {
@@ -62,6 +63,7 @@ function UserCard({ user }) {
   const classes = useStyles()
   const theme = useTheme()
   const media = useMediaQuery(theme.breakpoints.down('sm'))
+  console.log(user)
 
   return (
     <Card sx={{}} className={classes.Card}>
@@ -117,7 +119,9 @@ function UserCard({ user }) {
           </CardContent>
         </CardActionArea>
         <CardActions className={classes.CardButton}>
-          <Button variant='outlined' size='small'>
+          <Button variant='outlined' size='small' 
+                  component={Link}
+                  to={`/user/${user.username}`}>
             View Profile
           </Button>
         </CardActions>

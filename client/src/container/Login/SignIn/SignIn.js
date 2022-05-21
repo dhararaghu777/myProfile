@@ -57,7 +57,6 @@ export default function SignIn() {
   const location = useLocation()
   const navigate = useNavigate()
   const user = useSelector((state) => state.userInfo.user)
-  // const location = useLocation();
 
   const [error, seterror] = React.useState('')
 

@@ -240,7 +240,7 @@ function First() {
                           <EmailIcon />
                         </Link>
                         
-                        {item.linkedIn &&
+                        { item && item.linkedIn &&
                           (<Link href={item.linkedIn} 
                                 className={classes.Icon}
                                 target='_blank'>
@@ -248,7 +248,7 @@ function First() {
                           </Link>
                           )
                         }
-                        {item.instagram &&
+                        { item && item.instagram &&
                           (<Link href={item.instagram} 
                                   className={classes.Icon}
                                   target='_blank'>
@@ -256,7 +256,7 @@ function First() {
                           </Link>
                           )
                         }
-                        {item.github &&
+                        { item && item.github &&
                           (<Link href={item.github} 
                                   className={classes.Icon}
                                   target='_blank'>
@@ -264,7 +264,7 @@ function First() {
                           </Link>
                           )
                         }
-                        {item.youtube &&
+                        { item && item.youtube &&
                           (<Link href={item.youtube} 
                                 className={classes.Icon}
                                 target='_blank'>
@@ -272,7 +272,7 @@ function First() {
                           </Link>
                           )
                         }
-                        {item.facebook &&
+                        { item && item.facebook &&
                           (<Link href={item.facebook} 
                                   className={classes.Icon}
                                   target='_blank'>

@@ -139,7 +139,7 @@ function Details() {
                     }} />
             </Grid>
             <Grid item container >
-                {
+                { mobile &&
                 (mobile.primary || mobile.secondary)&& 
                 (<Grid item container>
                     <Grid item container>
@@ -207,7 +207,7 @@ function Details() {
                 </Grid>
                 )
                 }
-                {
+                { social && (
                     <Grid item container sx={{ 
                         marginTop:'1rem',
                         
@@ -268,6 +268,7 @@ function Details() {
                         
                     </Grid>
                   </Grid>
+                    )
                 } 
             </Grid>   
         </Grid>

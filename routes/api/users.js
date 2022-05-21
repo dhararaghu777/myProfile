@@ -7,7 +7,7 @@ const auth = require('../../middleware/auth')
 //------------------------ POST --------------------------------------------
 
 // method: POST
-// usage: used to provide user details based on email search
+// usage: used to provide user details based on email provided search bar in UI
 
 router.post(
   '/',
@@ -40,7 +40,7 @@ router.post(
 )
 
 // method: POST
-// usage: update User's Name
+// usage: update User's Name and image
 router.post('/:category', [auth], async (req, res) => {
   try {
     let user = await User.findById(req.user.id)
@@ -50,7 +50,7 @@ router.post('/:category', [auth], async (req, res) => {
     }
 
     const { category } = req.params
-    // console.log("category", category, req.body);
+    
     switch (category) {
       case 'name':
         user.name = req.body.name
