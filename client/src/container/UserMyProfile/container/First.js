@@ -16,20 +16,32 @@ const alternatePic =
 const useStyles = makeStyles((theme) => ({
   MyContainer: {
     minHeight: 'calc( 100vh - 64px)',
-    backgroundColor: '#00ADB5',
-    // backgroundColor: '#222831',
+    // backgroundColor: '#00ADB5',
+    background: "linear-gradient(46deg, #79b1f8, #79f0f4, #66f0c4,#b9f068, #f4dd6f, #f8a886,  #f083f8,#f66aa3)",
+
+    backgroundSize: "1600% 1600%",
+    animation: `$user 32s ease infinite `,
     padding: '0 3rem',
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
-    // backgroundImage:"url('https://images.unsplash.com/photo-1615818499660-30bb5816e1c7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OTN8fGRpZ2l0YWx8ZW58MHwwfDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60')",
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
     [theme.breakpoints.down('sm')]:{
       minHeight: 'calc( 100vh - 56px)',
     },
-    
   },
+
+  '@keyframes user': {
+    "0%":{
+      backgroundPosition:"0% 54%"
+    },
+    "50%":{
+      backgroundPosition:"100% 47%"
+    },
+    "100%":{
+      backgroundPosition:"0% 54%"
+    }
+  },
+
   MyProfile: {
     height: '25rem',
     alignItems: 'center',

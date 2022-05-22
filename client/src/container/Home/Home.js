@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       padding: '1rem 0.5rem',
     },
+    minHeight:'calc(100vh - 8rem)',
   },
   searchSec: {
     alignItems: 'center',

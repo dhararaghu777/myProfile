@@ -15,7 +15,7 @@ import theme from './components/Theme/Theme'
 import { Navigate, useLocation } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import UserMyProfile from './container/UserMyProfile/UserMyProfile'
-// import Footer from './container/Footer/Footer'
+import Footer from './container/Footer/Footer'
 
 function App() {
   const location = useLocation()
@@ -117,7 +117,7 @@ function App() {
             <Auxilary>
               <Header />
               <Home />
-              {/* <Footer/> */}
+              <Footer/>
             </Auxilary>
           }
         />
