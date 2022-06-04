@@ -29,16 +29,25 @@ app.use('/api/myprofile', require('./routes/api/myprofile'))
 app.use('/api/admin', require('./routes/api/adminDetails'))
 
 //serve static assets in production
+
+__dirname= path.resolve()
 if(process.env.NODE_ENV === 'production'){
 
   //set static folder
-  app.use(express.static('client/build'))
+  app.use(express.static(path.join(__dirname,'client/build')))
 
   app.get('*', (req, res)=>{
-    res.sendFile(__dirname, 'client', 'build', 'index.html')
+    res.sendFile(path.resolve('client', 'build', 'index.html'))
   })
   
 }
+else{
+  app.get('/', (req, res)=>{
+    res.send("Backend running")
+  })
+}
 
 // launching server
-app.listen(PORT)
+app.listen(PORT, ()=>{
+  console.log(`server is running on ${PORT}`)
+})
