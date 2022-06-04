@@ -112,7 +112,7 @@ function Achievements() {
       setload(false)
       setaddAchievement(false)
     } catch (err) {
-      console.log(err)
+      
       setload(false)
       setaddAchievement(false)
     }
@@ -132,7 +132,7 @@ function Achievements() {
       dispatch(removeAchievement(achId))
       setload(false)
     } catch (err) {
-      console.log(err)
+      
       setload(false)
     }
   }
@@ -183,6 +183,7 @@ function Achievements() {
           label='Achievement URL (optional)'
           type='type'
           focused
+          helperText='add http:// schema infront of url'
           fullWidth
           onChange={(e) => seturl(e.target.value)}
         />

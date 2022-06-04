@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import axios from '../../axios'
 import { setMyProfile } from '../../store/myProfileSlice';
 import Header from './container/Header';
-import { Container, Grid } from '@mui/material';
+import { Container, Grid, Typography } from '@mui/material';
 import {makeStyles} from '@mui/styles'
 import First from './container/First';
 import About from './container/About'
@@ -18,9 +18,11 @@ import Images from './container/Images';
 import Video from './container/Video'
 import Details from './container/Details'
 import Footer from '../Footer/Footer';
+
+
 const useStyles = makeStyles((theme) => ({
     UserMyProfile: {
-      position: 'relative',
+      position: 'block',
     },
     SubGrid:{
 
@@ -34,9 +36,12 @@ function UserMyProfile() {
   const dispatch = useDispatch();
   const [userData, setuserData] = useState(false);
   const userProfile= useSelector((state)=>state.myProfile);
+  const [error, seterror] = useState(false)
+  const [spin, setspin]= useState(false)
 
   // Access user data
   useEffect(() => {
+    setspin(true)
     const { username } = params
     const data = {
       username: username,
@@ -45,7 +50,7 @@ function UserMyProfile() {
     axios
       .post('/myprofile', data)
       .then((res) => {
-        console.log(res.data)
+        
         dispatch(
           setMyProfile({
             user: res.data.user,
@@ -53,18 +58,32 @@ function UserMyProfile() {
           })
         )
         setuserData(true);
+        setspin(false)
       })
       .catch((err) => {
-        console.log('error execting');
+       
         setuserData(false);
+        seterror(true)
+        setspin(false)
       })
   }, [])
 
   return (
       <Grid container className={classes.UserMyProfile}>
-          <Header />
+        <Header />
+        {spin && <Spinner/>}
+        {error && 
+          <Grid container sx={{
+                alignItems:'center',
+                justifyContent:'center',
+                margin:'10rem 0'
+              }}>
+              <Typography variant='h5' color="secondary">
+                  Sorry, something went wrong 😥
+              </Typography>
+          </Grid>}
           {
-            userData? (
+            userData && (
               <>
                 <First/>
                {userProfile.profile.about && userProfile.profile.about.length > 0 ? <About />:null}
@@ -78,7 +97,7 @@ function UserMyProfile() {
                <Details/>
                <Footer/>
               </>
-            ):<Spinner/>
+            )
           }
       </Grid>
       )

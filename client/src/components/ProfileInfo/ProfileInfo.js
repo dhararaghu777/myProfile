@@ -139,7 +139,7 @@ function ProfileInfo() {
       return
     }
     setphoto(image);
-    console.log("image",image);
+    
   }
 
   //upload profilepic
@@ -159,14 +159,14 @@ function ProfileInfo() {
 
     try {
       const res = await axios.post('/profilePic', form, config)
-      console.log(res.data)
+      
 
       dispatch(fetchUser(token))
 
       setloading((prev) => false)
       setphoto(null)
     } catch (err) {
-      console.log(err)
+      
       setloading((prev) => false)
       setphoto(null)
     }
@@ -196,7 +196,7 @@ function ProfileInfo() {
     } catch (err) {
       setloading((prev) => false)
       setedit(false)
-      console.log(err)
+     
     }
   }
 
@@ -215,7 +215,7 @@ function ProfileInfo() {
       dispatch(removeProfilePic())
       setloading(false)
     } catch (err) {
-      console.log(err)
+     
       setloading(false)
     }
   }

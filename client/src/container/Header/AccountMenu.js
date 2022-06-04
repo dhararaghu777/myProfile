@@ -38,7 +38,7 @@ export default function AccountMenu() {
       dispatch(profileLogout())
       navigate('/')
     } catch (err) {
-      console.log(err)
+      // console.log(err)
     }
   }
 

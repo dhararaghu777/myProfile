@@ -21,7 +21,7 @@ const UserSchema = new Schema({
   },
   access: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   image: {
     type: String,

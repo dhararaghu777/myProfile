@@ -120,7 +120,7 @@ function Experience() {
       setload(false)
       setaddExperience(false)
     } catch (err) {
-      console.log(err)
+      
       setload(false)
       setaddExperience(false)
     }
@@ -140,7 +140,7 @@ function Experience() {
       dispatch(removeExperience(expId))
       setload(false)
     } catch (err) {
-      console.log(err)
+     
       setload(false)
     }
   }
@@ -189,6 +189,8 @@ function Experience() {
           label='Years of Experience'
           focused
           fullWidth
+          error={/^([\d]+)([\.]{0,1})([\d]*)$/.test(yoe)===true ? false : true}
+          helperText={/^([\d]+)([\.]{0,1})([\d]*)$/.test(yoe) ? '' : 'please enter valid experience'}
           onChange={(e) => setyoe(e.target.value)}
         />
       </Grid>

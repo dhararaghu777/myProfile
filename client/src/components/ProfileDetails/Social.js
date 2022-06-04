@@ -110,7 +110,7 @@ function Social() {
       setload(false)
       setaddSocial(false)
     } catch (err) {
-      console.log(err)
+ 
       setload(false)
       setaddSocial(false)
     }
@@ -129,7 +129,7 @@ function Social() {
       dispatch(removeSocial())
       setload(false)
     } catch (err) {
-      console.log(err)
+  
       setload(false)
     }
   }

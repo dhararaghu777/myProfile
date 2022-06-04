@@ -100,12 +100,12 @@ function Skills() {
 
     try {
       const res = await axios.post('/profile/skills', data, config)
-      console.log('Updated Skills', res.data)
+      
       dispatch(updateSkill(res.data))
       setload(false)
       setaddSkill(false)
     } catch (err) {
-      console.log(err)
+      
       setload(false)
       setaddSkill(false)
     }
@@ -125,7 +125,7 @@ function Skills() {
       dispatch(removeSkill(skillId))
       setload(false)
     } catch (err) {
-      console.log(err)
+      
       setload(false)
     }
   }

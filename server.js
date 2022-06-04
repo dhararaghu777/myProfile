@@ -29,6 +29,7 @@ app.use('/api/users', require('./routes/api/users'))
 app.use('/api/profilePic', require('./routes/api/profilePic'))
 app.use('/api/profile', require('./routes/api/profile'))
 app.use('/api/myprofile', require('./routes/api/myprofile'))
+app.use('/api/admin', require('./routes/api/adminDetails'))
 
 // launching server
 app.listen(PORT)

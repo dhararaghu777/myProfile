@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   Box2: {
-    width: '15rem',
+    // width: '15rem',
   },
 
   CardContent: {
@@ -63,7 +63,7 @@ function UserCard({ user }) {
   const classes = useStyles()
   const theme = useTheme()
   const media = useMediaQuery(theme.breakpoints.down('sm'))
-  console.log(user)
+  
 
   return (
     <Card sx={{}} className={classes.Card}>

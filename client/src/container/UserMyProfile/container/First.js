@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     position: 'relative',
+
     [theme.breakpoints.down('sm')]:{
       minHeight: 'calc( 100vh - 56px)',
     },
@@ -58,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   MyProfileImageGrid:{
       justifyContent: 'flex-end',
       paddingRight: "3rem",
-      borderRight:'1px solid #cfcfcf',
+      borderRight:'2px solid #cfcfcf',
   
       
       [theme.breakpoints.down('md')]:{
@@ -87,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
       alignItems: 'center',
       justifyContent: 'center',
       overflow: 'hidden',
-      borderRadius: '0.15rem',
+      borderRadius: '1rem',
       '& img': {
         width: '100%',
         height: '100%',
@@ -128,7 +129,7 @@ const useStyles = makeStyles((theme) => ({
       },
       [theme.breakpoints.down('sm')]:{
         fontSize:'1rem !important',
-
+        textAlign:'center'
       }
   },
   Text2:{
@@ -142,7 +143,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down('sm')]:{
       fontSize:'1.4rem !important',
-
+      textAlign:'center'
     }
     
   },
@@ -151,6 +152,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight:'500 !important',
     [theme.breakpoints.down('sm')]:{
       fontSize:'0.9rem !important',
+      textAlign:'center'
     }
   },
   Social:{
@@ -158,7 +160,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    
+    [theme.breakpoints.down('sm')]:{
+     justifyContent:'center'
+    }
 
   },
   Icon:{
@@ -193,7 +197,7 @@ const useStyles = makeStyles((theme) => ({
 function First() {
   const classes = useStyles();
   const userProfile= useSelector((state)=>state.myProfile);
-  console.log("First",userProfile);
+
   const item = userProfile.profile.social
   useEffect(() => {
    

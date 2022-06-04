@@ -3,7 +3,7 @@ import Header from './container/Header/Header'
 import Home from './container/Home/Home'
 import { Routes, Route } from 'react-router-dom'
 import SignIn from './container/Login/SignIn/SignIn'
-import Auxilary from './container/Auxilary/Auxilary'
+import ProfilePage from './container/Auxilary/ProfilePage'
 import SignUp from './container/Login/SignUp/SignUp'
 import axios from './axios'
 import { useSelector, useDispatch } from 'react-redux'
@@ -16,6 +16,9 @@ import { Navigate, useLocation } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import UserMyProfile from './container/UserMyProfile/UserMyProfile'
 import Footer from './container/Footer/Footer'
+import Auxilary from './container/Auxilary/Auxilary'
+import Admin from './container/Admin/Admin'
+import {setAdmin} from './store/adminSlice'
 
 function App() {
   const location = useLocation()
@@ -24,10 +27,16 @@ function App() {
   const dispatch = useDispatch()
 
   //check token in cookies
-  useEffect(() => {
+  useEffect(async () => {
     const cookieToken = Cookies.get('token')
     if (cookieToken) {
       dispatch(setToken(cookieToken))
+    }
+    try {
+      const res= await axios.get('/admin')
+      dispatch(setAdmin(res.data))
+    } catch (err) {
+      console.log(err)
     }
   }, [])
 
@@ -44,7 +53,6 @@ function App() {
         const res = await axios.get('/login', config)
         dispatch(setUser(res.data))
         dispatch(setError(''))
-        console.log('user', res)
       } catch (err) {
         if (err) {
           console.log(err)
@@ -73,7 +81,7 @@ function App() {
         const res = await axios.get('/profile', config)
         dispatch(setProfile(res.data))
         dispatch(setError(''))
-        console.log('profile', res)
+        
       } catch (err) {
         if (err) {
           console.log(err)
@@ -98,29 +106,18 @@ function App() {
             /* Profile Page */
             <Route
               path={`/${user.username}`}
-              element={
-                <Auxilary>
-                  <Header />
-                  <Profile />
-                </Auxilary>
-              }
-            />
+              element={<ProfilePage/>}/>
           )
         }
 
         {/* Un-authenticated routes */}
         <Route path='/signin' element={<SignIn />} />
         <Route path='/signup' element={<SignUp />} />
-        <Route
-          path='/'
-          element={
-            <Auxilary>
-              <Header />
-              <Home />
-              <Footer/>
-            </Auxilary>
-          }
-        />
+        {/* <Route path='/'  element={<HomePage/>}/> */}
+        <Route path='/' element={<Auxilary/>}>
+            <Route index element={<Home/>}/>
+            <Route path='admin' element={<Admin/>}/>
+        </Route>
         <Route path='user/:username' element={<UserMyProfile />} />
         <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>

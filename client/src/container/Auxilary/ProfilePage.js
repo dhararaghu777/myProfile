@@ -1,16 +1,16 @@
 import React from 'react'
 import Header from '../Header/Header'
-import {Outlet} from 'react-router-dom'
+import Profile from '../Profile/Profile'
 import Footer from '../Footer/Footer'
 
-function Auxilary() {
+function ProfilePage() {
   return (
     <div>
         <Header/>
-        <Outlet/>
+        <Profile/>
         <Footer/>
     </div>
   )
 }
 
-export default Auxilary
+export default ProfilePage

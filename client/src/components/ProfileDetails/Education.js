@@ -113,7 +113,7 @@ function Education() {
       setload(false)
       setaddEducation(false)
     } catch (err) {
-      console.log(err)
+     
       setload(false)
       setaddEducation(false)
     }
@@ -133,7 +133,7 @@ function Education() {
       dispatch(removeEducation(eduId))
       setload(false)
     } catch (err) {
-      console.log(err)
+    
       setload(false)
     }
   }
@@ -180,6 +180,8 @@ function Education() {
           variant='filled'
           color='secondary'
           label='Year of PassedOut'
+          error={/^[\d]+$/.test(yop)===true ? false : true}
+          helperText={/^[\d]+$/.test(yop)===true ? '' : 'please enter valid year'}
           focused
           fullWidth
           onChange={(e) => setyop(e.target.value)}
@@ -190,6 +192,8 @@ function Education() {
           variant='filled'
           color='secondary'
           label='Percentage'
+          error={/^([\d]+)([\.]{0,1})([\d]*)$/.test(percentage)===true ? false : true}
+          helperText={/^([\d]+)([\.]{0,1})([\d]*)$/.test(percentage) ? '' : 'please enter valid percentage'}
           focused
           fullWidth
           onChange={(e) => setpercentage(e.target.value)}
@@ -202,6 +206,8 @@ function Education() {
           label='CGPA'
           focused
           fullWidth
+          error={/^([\d]+)([\.]{0,1})([\d]*)$/.test(cgpa)===true ? false : true}
+          helperText={/^([\d]+)([\.]{0,1})([\d]*)$/.test(cgpa) ? '' : 'please enter valid cgpa'}
           onChange={(e) => setcgpa(e.target.value)}
         />
       </Grid>

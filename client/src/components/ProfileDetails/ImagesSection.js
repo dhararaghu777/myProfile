@@ -115,7 +115,6 @@ function Images() {
       setload(false)
       setaddImage(false)
     } catch (err) {
-      console.log(err)
       setload(false)
       setaddImage(false)
     }
@@ -135,7 +134,7 @@ function Images() {
       dispatch(removeImage(imgId))
       setload(false)
     } catch (err) {
-      console.log(err)
+
       setload(false)
     }
   }

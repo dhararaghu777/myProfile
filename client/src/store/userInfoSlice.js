@@ -31,12 +31,12 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      console.log(action.payload)
+      
       state.user = action.payload
     },
 
     setToken: (state, action) => {
-      //console.log(action.payload);
+      
       state.token = action.payload
     },
     setError: (state, action) => {

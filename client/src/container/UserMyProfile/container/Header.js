@@ -7,9 +7,10 @@ import CssBaseline from '@mui/material/CssBaseline';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Slide from '@mui/material/Slide';
 import {makeStyles} from '@mui/styles';
-import { Button, Container, Link } from '@mui/material';
-import HomeIcon from '@mui/icons-material/Home';
-import {NavLink} from 'react-router-dom';
+import {NavLink, useNavigate} from 'react-router-dom';
+import {useSelector} from 'react-redux'
+
+
 const useStyles= makeStyles((theme) => ({
 
     AppBar: {
@@ -37,8 +38,11 @@ const useStyles= makeStyles((theme) => ({
         padding:'0 0.5rem',
         marginLeft:'1.5rem !important',
         '&:hover':{
+            transition:'all .250s linear',
             cursor: "pointer",
-        
+            color:'#f66aa3',
+            transform:'scale(1.15)',
+            fontWeight:'650'
         },
         [theme.breakpoints.down('sm')]:{
             padding:'0',
@@ -74,10 +78,14 @@ HideOnScroll.propTypes = {
   window: PropTypes.func,
 };
 
+
+
+
 function Header(props) {
 
-const classes= useStyles();
-
+  const user= useSelector(state=> state.userInfo?.user)
+  const classes= useStyles();
+  const navigate= useNavigate()
 
   return (
     <React.Fragment>
@@ -89,7 +97,8 @@ const classes= useStyles();
             <Typography variant="h6" 
                 component="div"
                 className={classes.MyLogo}
-                color="white">
+                color="white"
+                onClick={()=>navigate('/')}>
               My Profile
             </Typography>
             <Typography 
@@ -99,13 +108,21 @@ const classes= useStyles();
                 <NavLink to="/" 
                   className={classes.NavLink}>Home</NavLink>
             </Typography>
+
             <Typography 
+            component="div"
+            sx={{}}
+            className={classes.content}>
+                <NavLink to="/admin" 
+                  className={classes.NavLink}>Admin</NavLink>
+            </Typography>
+            { user && (<Typography 
                 component="div"
                 sx={{}}
                 className={classes.content}>
-                <NavLink to="/admin"
-                  className={classes.NavLink} >Admin</NavLink>
-            </Typography>
+                <NavLink to={`/${user.username}`}
+                  className={classes.NavLink} >Profile</NavLink>
+            </Typography>)}
           </Toolbar>
         </AppBar>
       </HideOnScroll>

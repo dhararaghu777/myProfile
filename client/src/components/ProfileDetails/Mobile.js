@@ -102,7 +102,7 @@ function Mobile() {
       setload(false)
       setaddMobile(false)
     } catch (err) {
-      console.log(err)
+      
       setload(false)
       setaddMobile(false)
     }
@@ -121,7 +121,7 @@ function Mobile() {
       dispatch(removeMobile())
       setload(false)
     } catch (err) {
-      console.log(err)
+      
       setload(false)
     }
   }
@@ -138,6 +138,8 @@ function Mobile() {
           variant='filled'
           color='secondary'
           label='Primary Number'
+          error={/^([\d]{10})$/.test(primary)===true ? false : true}
+          helperText={/^([\d]{10})$/.test(primary) ? '' : 'please enter valid phone number'}
           focused
           fullWidth
           onChange={(e) => setprimary(e.target.value)}
@@ -148,6 +150,8 @@ function Mobile() {
           variant='filled'
           color='secondary'
           label='Secondary Number'
+          error={/^([\d]{10})$/.test(secondary)===true ? false : true}
+          helperText={/^([\d]{10})$/.test(secondary) ? '' : 'please enter valid phone number'}
           focused
           fullWidth
           onChange={(e) => setsecondary(e.target.value)}

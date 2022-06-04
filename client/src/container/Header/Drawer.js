@@ -71,7 +71,7 @@ export default function SwipeableTemporaryDrawer() {
       dispatch(profileLogout())
       navigate('/')
     } catch (err) {
-      console.log(err)
+      // console.log(err)
     }
   }
 

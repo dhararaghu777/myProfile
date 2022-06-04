@@ -26,7 +26,7 @@ let useStyles = makeStyles((theme) => ({
   profile: {
     padding: '2rem 3rem',
     position: 'relative',
-    backgroundColor: '#F1FAEE',
+    backgroundColor: 'rgb(235 249 251 / 38%)',
     flexDirection: 'column',
 
     [theme.breakpoints.down('sm')]: {

@@ -5,10 +5,10 @@ const celadonBlue = '#457b9d'
 const powderBlue = '#A8DADC'
 const honeyDew = '#F1FAEE'
 const imperialRed = '#E63946';
-const sixth = '#222831';
-const seventh = '#393E46';
-const eighth = '#00ADB5';
-const ninth = '#EEEEEE'
+const sixthColor = '#222831';
+const seventhColor = '#393E46';
+const eighthColor = '#00ADB5';
+const ninthColor = '#EEEEEE'
 
 export default createTheme({
   palette: {
@@ -27,6 +27,14 @@ export default createTheme({
     fifth: {
       main: imperialRed,
     },
-    sixth:''
+    sixth:{
+      main:sixthColor
+    },
+    seventh:{
+      main:seventhColor
+    },
+    eighth:{
+      main:eighthColor
+    }
   },
 })

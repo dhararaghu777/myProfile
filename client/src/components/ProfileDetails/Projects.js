@@ -116,7 +116,7 @@ function Projects() {
       setload(false)
       setaddProject(false)
     } catch (err) {
-      console.log(err)
+      
       setload(false)
       setaddProject(false)
     }
@@ -136,7 +136,7 @@ function Projects() {
       dispatch(removeProject(prjId))
       setload(false)
     } catch (err) {
-      console.log(err)
+      
       setload(false)
     }
   }
@@ -175,6 +175,7 @@ function Projects() {
           label='Project URL'
           focused
           fullWidth
+          helperText='add http:// schema infront of url'
           onChange={(e) => setprojectUrl(e.target.value)}
         />
       </Grid>

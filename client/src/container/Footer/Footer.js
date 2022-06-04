@@ -8,7 +8,7 @@ const useStyles=makeStyles((theme)=>({
     Footer:{
         background:'#151515e6',
         color:'#fff',
-        height:'4rem',
+        height:'3rem',
         display:'flex',
         alignItems:'center',
         justifyContent:'center',
@@ -17,7 +17,7 @@ const useStyles=makeStyles((theme)=>({
         right:0,
         bottom:0,
         [theme.breakpoints.down('sm')]: {
-            height:'3rem !important',
+            // height:'3rem !important',
 
           },
     },
@@ -41,14 +41,15 @@ function Footer() {
                 alignItems:'center',
                 justifyContent:'center'
             }} >
-            <Typography variant="subtitle1">
-                Copy rights @
+            <Typography variant="subtitle2">
+                {`Copyright © `}
                 <Typography variant="subtitle2" 
                             className={classes.Owner}
                             component={Link}
                             to='/admin'>
-                    Raghu Dara 
+                    {`Raghu Dara`} 
                 </Typography>
+                {` ${new Date().getFullYear()}`}
             </Typography>
         </Grid>
     </Grid>

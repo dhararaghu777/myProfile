@@ -98,7 +98,7 @@ function About() {
       setload(false)
       setaddAbout(false)
     } catch (err) {
-      console.log(err)
+      
       setload(false)
       setaddAbout(false)
     }
@@ -117,7 +117,7 @@ function About() {
       dispatch(removeAbout())
       setload(false)
     } catch (err) {
-      console.log(err)
+     
       setload(false)
     }
   }

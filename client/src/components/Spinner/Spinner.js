@@ -21,16 +21,6 @@ const Parent = styled('div')({
     backgroundColor:'rgba(250, 250, 250, 0.6)',
 });
 
-const Grand= styled('div')({
-    // position: 'relative',
-    // display: 'flex',
-    // alignItems:'center',
-    // justifyContent:'center',
-    // width: '100%',
-    // height: '100%'
-})
-
-
 
 function Spinner() {
     return (
@@ -41,7 +31,3 @@ function Spinner() {
 }
 
 export default Spinner;
-
-
-// #4d4b5f
-//#1D3557

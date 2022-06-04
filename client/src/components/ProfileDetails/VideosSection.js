@@ -114,7 +114,7 @@ function Videos() {
       setload(false)
       setaddVideo(false)
     } catch (err) {
-      console.log(err)
+     
       setload(false)
       setaddVideo(false)
     }
@@ -134,7 +134,7 @@ function Videos() {
       dispatch(removeVideo(vdId))
       setload(false)
     } catch (err) {
-      console.log(err)
+     
       setload(false)
     }
   }
@@ -248,7 +248,7 @@ function Videos() {
                       </Typography>
                     </Typography>
                     <Typography variant='div' className={classes.Text}>
-                      <Typography variant='span'>Image URL:</Typography>
+                      <Typography variant='span'>Video URL:</Typography>
                       <Typography variant='h6' gutterBottom>
                         <Link
                           href={item.skillImage}

@@ -18,6 +18,7 @@ import { setToken } from '../../../store/userInfoSlice'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import { makeStyles } from '@mui/styles'
+import Spinner from '../../../components/Spinner/Spinner'
 
 const useStyles = makeStyles((theme) => ({
   errorMsg1: {
@@ -41,7 +42,7 @@ function Copyright(props) {
       {...props}
     >
       {'Copyright © '}
-      <Link color='inherit'>Raghu Dara</Link> {new Date().getFullYear()}
+      <Link color='inherit' href="/admin">Raghu Dara</Link> {new Date().getFullYear()}
       {'.'}
     </Typography>
   )
@@ -57,14 +58,14 @@ export default function SignIn() {
   const location = useLocation()
   const navigate = useNavigate()
   const user = useSelector((state) => state.userInfo.user)
-
+  const [spin, setspin]= React.useState(false)
   const [error, seterror] = React.useState('')
-
   const dispatch = useDispatch()
 
   // login function
   const handleSubmit = (event) => {
     event.preventDefault()
+    setspin(true)
     const data = new FormData(event.currentTarget)
 
     //user details
@@ -81,14 +82,14 @@ export default function SignIn() {
         dispatch(setToken(res.data.token))
         Cookies.set('token', res.data.token, { expires: 1 })
         navigate(`/`)
-
+        setspin(false)
         setTimeout(() => {
           Cookies.remove('token')
           window.location.reload()
         }, 60 * 60 * 1000)
       })
       .catch((err) => {
-        console.log(err.response)
+        setspin(false)
         if (err.response) {
           seterror(err.response.data.errors[0].msg)
         }
@@ -97,6 +98,7 @@ export default function SignIn() {
 
   return (
     <ThemeProvider theme={theme}>
+      {spin && <Spinner/>}
       <Container component='main' maxWidth='xs'>
         <CssBaseline />
         <Box
@@ -160,9 +162,16 @@ export default function SignIn() {
               </Grid>
               <Grid item>
                 <Typography variant='body2'>
-                  <NavLink to='/signup' className={classes.link2}>
+                  {/* <NavLink to='/signup' className={classes.link2}>
                     {"Don't have an account? Sign Up"}
-                  </NavLink>
+                  </NavLink> */}
+                  <Button component={Link}
+                          variant="contained"
+                          size="medium"
+                          color="error"
+                          href="/signup" >
+                      Sign Up
+                  </Button>
                 </Typography>
               </Grid>
             </Grid>

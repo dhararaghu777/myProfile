@@ -16,6 +16,8 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import axios from '../../../axios'
 import { makeStyles } from '@mui/styles'
 import HomeIcon from '@mui/icons-material/Home'
+import SuccessMessage from './SuccessMessage'
+import Spinner from '../../../components/Spinner/Spinner'
 
 const useStyles = makeStyles((theme) => ({
   errorMsg: {
@@ -28,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
   link2: {
     // textDecoration:'none',
     color: '#E63946',
+    fontSize:'1rem'
   },
 }))
 
@@ -40,7 +43,7 @@ function Copyright(props) {
       {...props}
     >
       {'Copyright © '}
-      <Link color='inherit'>Raghu Dara</Link> {new Date().getFullYear()}
+      <Link color='inherit' href="/admin">Raghu Dara</Link> {new Date().getFullYear()}
       {'.'}
     </Typography>
   )
@@ -51,6 +54,9 @@ const theme = createTheme()
 
 //SingUp
 export default function SignUp() {
+
+  const [completed, setcompleted] = React.useState(false)
+  const [spin, setspin] = React.useState(false)
   const classes = useStyles()
   const navigate= useNavigate()
   const [status, setstatus] = React.useState('')
@@ -59,13 +65,7 @@ export default function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault()
     const data = new FormData(event.currentTarget)
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-      fullname: data.get('fullname'),
-    })
-
+    
     const details = {
       email: data.get('email'),
       password: data.get('password'),
@@ -81,14 +81,11 @@ export default function SignUp() {
     axios
       .post('/signin', details, config)
       .then((res) => {
-        console.log(res.data)
         setstatus(res.data.response)
         seterror('')
-        //add spinner and successfull template before navigate to Home page
-        navigate('/signin')
+        setcompleted(true)
       })
       .catch((err) => {
-        console.log(err.response.data.errors[0].msg)
         seterror(err.response.data.errors[0].msg)
         setstatus('')
       })
@@ -96,6 +93,8 @@ export default function SignUp() {
 
   return (
     <ThemeProvider theme={theme}>
+      {completed && <SuccessMessage close={setcompleted} spinner={setspin} />}
+      {spin && <Spinner /> }
       <Container component='main' maxWidth='xs'>
         <CssBaseline />
         <Box
