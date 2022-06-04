@@ -25,7 +25,7 @@ router.post('/', async (req, res)=>{
         await admin.save()
         res.status(200).json({message:'Admin details added successfully'})
     } catch (err) {
-        console.log(err)
+      
         return res.status(404).json({message:'Error occured'})
     }
 })

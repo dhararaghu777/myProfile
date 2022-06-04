@@ -26,7 +26,7 @@ router.get('/', [auth], async (req, res) => {
 
     res.status(200).json(profile)
   } catch (e) {
-    console.log(e)
+   
     return res.status(400).json({
       errors: [
         {
@@ -57,7 +57,7 @@ router.post('/:category', [auth], async (req, res) => {
     }
 
     const { category } = req.params
-    console.log(category)
+    
 
     let values = null
     let result = null
@@ -142,7 +142,7 @@ router.post('/:category', [auth], async (req, res) => {
 
     res.status(200).json(result)
   } catch (e) {
-    console.log(e)
+    
     return res.status(400).json({
       errors: [
         {
@@ -171,7 +171,7 @@ router.delete('/:category/:id', [auth], async (req, res) => {
     }
 
     const { category, id } = req.params
-    console.log(category, id)
+    
 
     let index=null
     switch (category) {
@@ -236,7 +236,7 @@ router.delete('/:category/:id', [auth], async (req, res) => {
 
     res.status(200).json(`Id ${id} deleted successfully`)
   } catch (e) {
-    console.log(e)
+    
     return res.status(500).json({
       errors: [
         {

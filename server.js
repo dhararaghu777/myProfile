@@ -17,10 +17,6 @@ connectDB((err, res) => {
   console.log('Database connected')
 })
 
-// initiate backend server
-app.get('/', (req, res) => {
-  res.send('Hello Backend')
-})
 
 // API routes
 app.use('/api/signin', require('./routes/api/signIn'))
