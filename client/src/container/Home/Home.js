@@ -25,12 +25,13 @@ import {cardData} from './cardData'
 const useStyles = makeStyles((theme) => ({
   Home: {
     // backgroundImage:'url("https://res.cloudinary.com/raghudara/image/upload/v1653225476/background_z2w3tb.jpg")',
-    backgroundSize:'cover',
-    backgroundPosition:'center',
-    backgroundRepeat:'no-repeat',
+    // backgroundSize:'cover',
+    // backgroundPosition:'center',
+    // backgroundRepeat:'no-repeat',
     padding: '3rem',
     [theme.breakpoints.down('sm')]: {
       padding: '1rem',
+     
     },
     // minHeight:'calc(100vh - 7rem)',
     // [theme.breakpoints.down('sm')]: {

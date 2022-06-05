@@ -12,13 +12,13 @@ const useStyles=makeStyles((theme)=>({
         display:'flex',
         alignItems:'center',
         justifyContent:'center',
-        position:'relative',
+        position:'fixed',
         left:0,
         right:0,
         bottom:0,
         [theme.breakpoints.down('sm')]: {
             // height:'3rem !important',
-
+            
           },
     },
     Owner:{
