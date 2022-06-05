@@ -5,7 +5,7 @@ const connectDB = require('./config/db')
 const cors = require('cors')
 const path= require('path')
 
-app.use(cors())
+// app.use(cors())
 
 // initiating port
 const PORT = process.env.PORT || 5000
