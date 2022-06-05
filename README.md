@@ -1,5 +1,5 @@
 ## My Profile
-#### It is a web based portfolio website provides free profile hosting facility to the user.
+#### It is a web based portfolio website provides free profile hosting facility to users.
 
 Software-stack: MERN stack
 
