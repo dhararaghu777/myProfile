@@ -22,6 +22,7 @@ import { userLogout } from '../../store/userInfoSlice'
 import { profileLogout } from '../../store/userProfileSlice'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import PublicIcon from '@mui/icons-material/Public';
 
 const getData = (user) => {
   const signIn = {
@@ -101,6 +102,14 @@ export default function SwipeableTemporaryDrawer() {
             <ListItemText primary={text.name} />
           </ListItem>
         ))}
+        {user && (
+          <ListItem button component={Link} to={`/user/${user.username}`}>
+            <ListItemIcon>
+              <PublicIcon/>
+            </ListItemIcon>
+            <ListItemText primary="My Website" />
+        </ListItem>
+        )}
       </List>
       <Divider />
       {user && (
