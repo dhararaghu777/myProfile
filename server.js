@@ -23,10 +23,10 @@ connectDB((err, res) => {
 app.use('/api/signin', require('./routes/api/signIn'))
 app.use('/api/login', require('./routes/api/login'))
 app.use('/api/users', require('./routes/api/users'))
-app.use('/api/profilePic', require('./routes/api/profilePic'))
+app.use('/api/profilePic', require('./routes/api/profilepic'))
 app.use('/api/profile', require('./routes/api/profile'))
 app.use('/api/myprofile', require('./routes/api/myprofile'))
-app.use('/api/admin', require('./routes/api/adminDetails'))
+app.use('/api/admin', require('./routes/api/admindetails'))
 
 //serve static assets in production
 
